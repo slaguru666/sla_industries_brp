@@ -17,9 +17,9 @@ Installable Foundry VTT world package for `sla-brp`.
 
 Use:
 
-- `manifest`: `https://raw.githubusercontent.com/<user>/<repo>/main/sla-brp/world.json`
-- `download`: `https://github.com/<user>/<repo>/releases/latest/download/sla-brp.zip`
-- `url`: `https://github.com/<user>/<repo>`
+- `manifest`: `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json`
+- `download`: `https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-brp.zip`
+- `url`: `https://github.com/slaguru666/sla_industries_brp`
 
 ## Release Steps
 
@@ -41,7 +41,7 @@ In Foundry setup screen:
 2. Click **Install World**.
 3. Paste manifest URL:
 
-   `https://raw.githubusercontent.com/<user>/<repo>/main/sla-brp/world.json`
+   `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json`
 
 4. Install.
 

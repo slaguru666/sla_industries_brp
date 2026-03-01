@@ -14,7 +14,7 @@
     "maximum": "13"
   },
   "system": "sla-industries-brp",
-  "manifest": "https://raw.githubusercontent.com/YOUR_GITHUB_USER/YOUR_REPO/main/sla-brp/world.json",
-  "download": "https://github.com/YOUR_GITHUB_USER/YOUR_REPO/releases/latest/download/sla-brp.zip",
-  "url": "https://github.com/YOUR_GITHUB_USER/YOUR_REPO"
+  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json",
+  "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-brp.zip",
+  "url": "https://github.com/slaguru666/sla_industries_brp"
 }
