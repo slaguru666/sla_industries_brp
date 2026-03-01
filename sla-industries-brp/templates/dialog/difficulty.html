@@ -1,0 +1,109 @@
+<form class="brp sla-roll-dialog" id="difficulty-roll-form">
+  <header class="sla-dialog-head">
+    <div class="sla-dialog-kicker">SLA INDUSTRIES // EDGE CONTROL</div>
+    <div class="diff-label">{{label}}</div>
+    {{#if weaponLabel}}
+      <div class="sla-dialog-weapon">{{weaponLabel}}</div>
+    {{/if}}
+    <div class="sla-dialog-sub">Set edge and tactical modifiers before rolling.</div>
+  </header>
+
+  <div class="flexcol">
+    {{#if drugSummary}}
+      <div class="centre font12">{{ localize 'BRP.drugEffects' }}: {{drugSummary}}</div>
+      <div class="centre font12">{{ localize 'BRP.drugRollMod' }}: {{drugFlatMod}}%</div>
+      {{#if drugExtraActions}}
+        <div class="centre font12">{{ localize 'BRP.drugExtraActions' }}: +{{drugExtraActions}}</div>
+      {{/if}}
+    {{/if}}
+    {{#if mentalSummary}}
+      <div class="centre font12">Mental: {{mentalSummary}}</div>
+      <div class="centre font12">Mental Roll Mod: {{mentalFlatMod}}%</div>
+    {{/if}}
+
+    {{#if (eq cardType 'RE')}}
+      <div class="flexrow">
+        <label class="resource-label-diff">{{ localize 'BRP.addStat' }}</label>
+        <select data-handle-change name="addStat">
+          {{selectOptions addStatOptions selected=addStat}}
+        </select>
+      </div>
+    {{/if}}
+
+    <div class="flexrow">
+      {{#if needDiff}}
+        <label class="resource-label-diff centre">Roll Edge</label>
+        <select data-handle-change name="difficulty">
+          {{selectOptions difficultyOptions selected=diff}}
+        </select>
+      {{/if}}
+
+      {{#isOr (eq cardType 'RE') (eq cardType 'PP')}}
+        <label class="resource-label-diff centre" title="Enter opposing characteristic (e.g. 13) or % value (e.g. 65)">
+          {{#if (eq cardType 'RE')}}{{localize "BRP.resistVal"}}{{else}}{{localize "BRP.vsPOW"}}{{/if}}
+        </label>
+        <input data-handle-change class="diff-number-input" type="number" min="0" step="1" autocomplete="off" value="{{resistance}}" name="resistance">
+      {{/isOr}}
+    </div>
+
+    {{#if needDiff}}
+      <div class="sla-edge-help centre font12">
+        Advantage/Disadvantage: roll 1D100, then reroll only the tens die and keep best/worst.
+      </div>
+    {{/if}}
+
+    {{#isOr (eq cardType 'RE') (eq cardType 'PP')}}
+    {{else}}
+      <div class="flexrow">
+        <label class="resource-label-diff centre" title="{{ localize 'BRP.flatModHint' }}">Tactical Modifier (%)</label>
+        <input data-handle-change class="diff-number-input" type="number" step="1" value="{{flatMod}}" name="flatMod">
+      </div>
+    {{/isOr}}
+
+    {{#if askRange}}
+      <div class="flexrow">
+        <label class="resource-label-diff">{{ localize 'BRP.askRange' }}</label>
+        <select data-handle-change name="range">
+          {{selectOptions rangeOptions selected=range}}
+        </select>
+      </div>
+    {{/if}}
+
+    {{#if askHands}}
+      <div class="flexrow">
+        <label class="resource-label-diff">{{ localize 'BRP.askHands' }}</label>
+        <select data-handle-change name="hands">
+          {{selectOptions handOptions selected=hands}}
+        </select>
+      </div>
+    {{/if}}
+
+    {{#if firstAid}}
+      <div class="flexrow">
+        <label class="resource-label-diff">{{ localize 'BRP.selectWound' }}</label>
+        <select data-handle-change name="wound">
+          {{selectOptions woundList}}
+        </select>
+      </div>
+    {{/if}}
+
+    {{#if askFireMode}}
+      <div class="flexrow">
+        <label class="resource-label-diff">Fire Mode</label>
+        <select data-handle-change name="fireMode">
+          {{selectOptions fireModeOptions selected=fireMode}}
+        </select>
+      </div>
+    {{/if}}
+
+    {{#if askAmmoTag}}
+      <div class="flexrow">
+        <label class="resource-label-diff">{{ localize 'BRP.ammoTypeSelect' }}</label>
+        <select data-handle-change name="ammoTag">
+          {{selectOptions ammoTagOptions selected=ammoTag}}
+        </select>
+      </div>
+      <div class="centre font12">{{ localize 'BRP.ammoCalibreShort' }}: {{ammoCalibreLabel}} | {{ localize 'BRP.ammoRoundBase' }}: {{ammoBaseCost}} CRD | {{ localize 'BRP.ammoRoundsSpent' }}: {{ammoRoundsSpent}}</div>
+    {{/if}}
+  </div>
+</form>

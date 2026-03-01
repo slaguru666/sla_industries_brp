@@ -1,0 +1,53 @@
+<section>
+  <div class="background-subtitle">SLA Operations:</div>
+  <div class="sla-ops-grid">
+    <label>SCL:</label>
+    <input type="number" name="system.sla.scl" value="{{actor.system.sla.scl}}" />
+
+    <label>BPN Type:</label>
+    <select name="system.sla.bpnType">
+      <option value="White" {{#if (eq actor.system.sla.bpnType "White")}}selected{{/if}}>White</option>
+      <option value="Blue" {{#if (eq actor.system.sla.bpnType "Blue")}}selected{{/if}}>Blue</option>
+      <option value="Yellow" {{#if (eq actor.system.sla.bpnType "Yellow")}}selected{{/if}}>Yellow</option>
+      <option value="Red" {{#if (eq actor.system.sla.bpnType "Red")}}selected{{/if}}>Red</option>
+      <option value="Green" {{#if (eq actor.system.sla.bpnType "Green")}}selected{{/if}}>Green</option>
+      <option value="Grey" {{#if (eq actor.system.sla.bpnType "Grey")}}selected{{/if}}>Grey</option>
+      <option value="Black" {{#if (eq actor.system.sla.bpnType "Black")}}selected{{/if}}>Black</option>
+      <option value="Platinum" {{#if (eq actor.system.sla.bpnType "Platinum")}}selected{{/if}}>Platinum</option>
+    </select>
+
+    <label>BPN Ref:</label>
+    <input type="text" name="system.sla.bpnRef" value="{{actor.system.sla.bpnRef}}" />
+
+    <label>Department:</label>
+    <input type="text" name="system.sla.department" value="{{actor.system.sla.department}}" />
+
+    <label>Sponsor:</label>
+    <input type="text" name="system.sla.sponsor" value="{{actor.system.sla.sponsor}}" />
+
+    <label>Media Rating:</label>
+    <input type="number" name="system.sla.mediaRating" value="{{actor.system.sla.mediaRating}}" />
+  </div>
+  <div>
+    <label class="background-subtitle">Campaign Notes:</label>
+    <textarea class="sla-campaign-notes" name="system.sla.campaignNotes">{{actor.system.sla.campaignNotes}}</textarea>
+  </div>
+  <br>
+
+  <div class="background-subtitle">{{background1}}:</div>
+  <div>
+    {{editor enrichedBackgroundValue engine="prosemirror" class="background-doc" target="system.background" button=true owner=owner editable=editable}}
+  </div>
+  <br>
+
+  <div class="background-subtitle">{{background2}}:</div>
+  <div>
+    {{editor enrichedBiographyValue engine="prosemirror" class="background-doc" target="system.biography" button=true owner=owner editable=editable}}
+  </div>
+  <br>
+
+  <div class="background-subtitle">{{background3}}:</div>
+  <div>
+    {{editor enrichedBackstoryValue engine="prosemirror" class="background-doc" target="system.backstory" button=true owner=owner editable=editable}}
+  </div>
+</section>

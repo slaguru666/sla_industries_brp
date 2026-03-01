@@ -1,0 +1,118 @@
+const SETTINGS = {
+
+  starterSkills: {
+    name: "BRP.Settings.starterSkills",
+    hint: "BRP.Settings.starterSkillsHint",
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  },
+
+  starterTraits: {
+    name: "BRP.Settings.starterTraits",
+    hint: "BRP.Settings.starterTraitsHint",
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  },
+
+  background1: {
+    name: "BRP.Settings.background1",
+    hint: "BRP.Settings.backgroundHint",
+    scope: "world",
+    config: false,
+    type: String,
+    default: "Dossier"
+  },
+
+  background2: {
+    name: "BRP.Settings.background2",
+    hint: "BRP.Settings.backgroundHint",
+    scope: "world",
+    config: false,
+    type: String,
+    default: "BPN Log"
+  },
+
+  background3: {
+    name: "BRP.Settings.background3",
+    hint: "BRP.Settings.backgroundHint",
+    scope: "world",
+    config: false,
+    type: String,
+    default: "Notes"
+  },
+
+  useWealth: {
+    name: 'BRP.Settings.useWealth',
+    hint: 'BRP.Settings.useWealth',
+    scope: 'world',
+    config: false,
+    default: true,
+    type: Boolean
+  },
+
+  wealthLabel: {
+    name: "BRP.Settings.wealthLabel",
+    hint: "BRP.Settings.wealthLabelHint",
+    scope: "world",
+    config: false,
+    type: String,
+    default: "Credits"
+  },
+
+
+}
+
+export class BRPCharSettings extends FormApplication {
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      title: 'BRP.brpSettings',
+      classes: ["brp", "rulesmenu"],
+      id: 'char-settings',
+      template: 'systems/sla-industries-brp/templates/settings/char-settings.html',
+      width: 550,
+      height: 'auto',
+      closeOnSubmit: true
+    })
+  }
+
+  async getData() {
+    const options = {}
+    for (const [k, v] of Object.entries(SETTINGS)) {
+      options[k] = {
+        value: game.settings.get('sla-industries-brp', k),
+        setting: v
+      }
+    }
+    return options
+  }
+
+  static registerSettings() {
+    for (const [k, v] of Object.entries(SETTINGS)) {
+      game.settings.register('sla-industries-brp', k, v)
+    }
+  }
+
+  activateListeners(html) {
+    super.activateListeners(html)
+    html.find('button[name=reset]').on('click', event => this.onResetDefaults(event))
+  }
+
+  async onResetDefaults(event) {
+    event.preventDefault()
+    for await (const [k, v] of Object.entries(SETTINGS)) {
+      await game.settings.set('sla-industries-brp', k, v?.default)
+    }
+    return this.render()
+  }
+
+  async _updateObject(event, data) {
+    for await (const key of Object.keys(SETTINGS)) {
+      game.settings.set('sla-industries-brp', key, data[key])
+    }
+  }
+
+}

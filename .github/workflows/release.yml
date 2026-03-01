@@ -1,4 +1,4 @@
-name: Build and Attach Foundry World Zip
+name: Build and Attach Foundry Package Zips
 
 on:
   release:
@@ -6,19 +6,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-release-zip:
+  build-release-zips:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build zip
+      - name: Build zips
         run: |
           mkdir -p dist
           zip -r dist/sla-brp.zip sla-brp -x "*.DS_Store"
+          zip -r dist/sla-industries-brp.zip sla-industries-brp -x "*.DS_Store"
 
       - name: Upload to release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/sla-brp.zip
+          files: |
+            dist/sla-brp.zip
+            dist/sla-industries-brp.zip

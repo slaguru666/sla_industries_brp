@@ -1,0 +1,60 @@
+<section class="sla-traits-tab">
+  <div class="sla-traits-header">
+    <div class="sla-traits-title">SLA Trait Engine</div>
+    <div class="sla-traits-actions">
+      <button type="button" class="trait-validate">Validate</button>
+      {{#if isGM}}
+        <button type="button" class="trait-state-edit">Edit State</button>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="sla-traits-audit {{#if traitValidation.ok}}ok{{else}}warn{{/if}}">
+    <div><strong>Trait Count:</strong> {{traitCount}}</div>
+    <div><strong>Advantage Ranks:</strong> {{traitValidation.rankBalance.advantageRanks}}</div>
+    <div><strong>Disadvantage Ranks:</strong> {{traitValidation.rankBalance.disadvantageRanks}}</div>
+    <div>
+      <strong>Balance Net:</strong> {{traitValidation.rankBalance.net}}
+      {{#if traitValidation.rankBalance.balanced}}
+        <span class="sla-trait-balance-ok">BALANCED</span>
+      {{else}}
+        <span class="sla-trait-balance-warn">UNBALANCED</span>
+      {{/if}}
+    </div>
+    <div><strong>Coverage:</strong> {{#if traitValidation.ok}}All installed traits map to BRP definitions{{else}}Issues detected{{/if}}</div>
+    <div><strong>Preview Modifier (Bureaucracy baseline):</strong> {{traitValidation.rollPreview.traitFlatMod}}%</div>
+    {{#if traitValidation.errors.length}}
+      <div><strong>Errors:</strong> {{#each traitValidation.errors as |err|}}<span class="sla-trait-error">{{err}}</span>{{/each}}</div>
+    {{/if}}
+    {{#if traitValidation.warnings.length}}
+      <div><strong>Warnings:</strong> {{#each traitValidation.warnings as |warn|}}<span class="sla-trait-warn">{{warn}}</span>{{/each}}</div>
+    {{/if}}
+  </div>
+
+  <div class="sla-traits-drophint">
+    Drag & drop <strong>persTrait</strong> items here from the Items directory.
+  </div>
+
+  <ol class="sla-trait-list">
+    <li class="sla-trait-row sla-trait-head">
+      <div>Icon</div>
+      <div>Trait</div>
+      <div>Rank</div>
+      <div>Type</div>
+      <div>Automation</div>
+      <div>BRP Effect</div>
+      <div>Delete</div>
+    </li>
+    {{#each persTraitsEnhanced as |trait|}}
+      <li class="item sla-trait-row" data-item-id="{{trait._id}}">
+        <div class="sla-trait-icon item-edit" data-item-id="{{trait._id}}"><img src="{{trait.img}}" title="{{trait.name}}" /></div>
+        <div class="sla-trait-name item-edit persTrait-name contextmenu" data-item-id="{{trait._id}}" data-xp="{{trait.system.improve}}" data-opp="false">{{trait.name}}</div>
+        <div class="sla-trait-rank">{{trait.slaTrait.rank}} / {{trait.slaTrait.maxRank}}</div>
+        <div class="sla-trait-type">{{trait.slaTrait.type}}</div>
+        <div class="sla-trait-status">{{trait.slaTrait.status}}</div>
+        <div class="sla-trait-effect" title="{{trait.slaTrait.effectSummary}}">{{trait.slaTrait.effectSummary}}</div>
+        <div class="sla-trait-delete"><a class="item-delete"><i class="fas fa-trash"></i></a></div>
+      </li>
+    {{/each}}
+  </ol>
+</section>

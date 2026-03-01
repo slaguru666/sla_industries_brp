@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f1114"/>
+      <stop offset="100%" stop-color="#1f2429"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#8f969e"/>
+      <stop offset="100%" stop-color="#d4d8dd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="20" fill="url(#bg)"/>
+  <rect x="48" y="46" width="1104" height="268" rx="12" fill="none" stroke="url(#line)" stroke-width="2"/>
+  <text x="72" y="156" fill="#f2f4f6" font-size="92" font-family="Arial, Helvetica, sans-serif" letter-spacing="6">SLA INDUSTRIES</text>
+  <text x="75" y="228" fill="#b9c0c7" font-size="44" font-family="Arial, Helvetica, sans-serif" letter-spacing="4">BASIC ROLEPLAYING SYSTEM DRAFT</text>
+  <text x="75" y="284" fill="#8f969e" font-size="28" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">FOUNDRY VTT</text>
+</svg>

@@ -1,0 +1,27 @@
+<form class="brp gr-card sla-init-chat-card">
+  <div class="bold">Escalation Initiative</div>
+  <ol class="gr-list">
+    <li class="actor-roll">
+      <img class="open-actor" src="{{actorImg}}" height="60" width="60" title="{{actorName}}" />
+      <div class="roll-details">
+        <div class="header roll-truncate">
+          <div class="name">
+            <span class="tag">{{actorName}}</span>
+          </div>
+        </div>
+        <div class="roll-meta-line">Approach: {{approach}} ({{statTotal}}) | Mode: {{mode}}</div>
+        <div class="roll-meta-line">D10: {{d10Text}} | Initiative: {{initiative}}</div>
+        {{#if risk}}
+          <div class="roll-meta-line roll-meta-line--edge">Risk trigger: {{#if coolTriggered}}Yes{{else}}No{{/if}}</div>
+        {{/if}}
+        {{#if coolTriggered}}
+          <div class="roll-meta-line roll-meta-line--edge">COOL: {{coolResultLabel}}</div>
+          <span class="pending {{outcomeClass}}">{{outcomeText}}</span>
+          {{#if optionalBonusLabel}}
+            <div class="roll-meta-line">Optional bonus: {{optionalBonusLabel}}</div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </li>
+  </ol>
+</form>

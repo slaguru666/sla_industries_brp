@@ -1,0 +1,116 @@
+<section>
+  <div class="weapon-section-label">{{ localize 'BRP.weapons' }} (Ranged)</div>
+  <div class="weapon-ranged-grid">
+    <div class="diff-label centre">{{ localize 'BRP.icon' }}</div>
+    <div class="diff-label">{{ localize 'BRP.weapon'}}</div>
+    <div class="diff-label centre" title="{{localize 'BRP.scoreIncHint'}}">{{ localize 'BRP.chance'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.attack' }}"><i class="fa-solid fa-dice-d20 sla-combat-roll-glyph"></i></div>
+    <div class="diff-label centre">{{ localize 'BRP.damage'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.range'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.att'}}</div>
+    <div class="diff-label centre" title="{{localize 'BRP.handCrewHint'}}">{{ localize 'BRP.handCrew'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.enc'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.ammoCalibreShort' }}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.ammoHint' }}">{{ localize 'BRP.ammo'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.status' }}">{{ localize 'BRP.statusShort'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.delete' }}</div>
+  </div>
+  <ol class="gr-list">
+    {{#each rangedWeapons as |weapon key|}}
+      <li class="item weapon-ranged-grid" data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">
+        <div class="item item-edit centre weapon-icon-cell" data-item-id="{{weapon._id}}">
+          <img class="combat-weapon-icon" src="{{weapon.img}}" title="{{weapon.name}}" />
+        </div>
+        <div class="item item-edit weapon-name contextmenu {{#if weapon.system.hasEffects}}italics bold{{/if}}" {{#if weapon.system.hasEffects}} title="{{localize 'BRP.activeEffect'}}" {{/if}} data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">{{weapon.name}}</div>
+        <div class="font14 centre" title="{{weapon.system.skillName}}">{{weapon.system.skillScoreDisplay}}</div>
+        <div class="item rollable weapon-name centre combat-roll-icon combat-roll-cell" title="{{ localize 'BRP.attack' }}" data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">
+          <i class="fa-solid fa-dice-d20 sla-combat-roll-glyph"></i>
+        </div>
+        <div class="item font14 {{#unless weapon.system.specialDmg}}rollable damage-name{{/unless}} centre" data-item-id="{{weapon._id}}">{{weapon.system.dmgName}}</div>
+        <div class="font14 centre">{{weapon.system.rangeName}}</div>
+        <div class="font14 centre" title="{{localize 'BRP.rof'}} : {{weapon.system.rof}}">{{weapon.system.att}}</div>
+        {{#if (eq weapon.system.weaponType 'artillery')}}
+          <div class="font14 centre">{{weapon.system.crew}}</div>
+        {{else}}
+          <div class="font14 centre">{{weapon.system.hands}}</div>
+        {{/if}}
+        <div class="font14 centre" title="{{localize 'BRP.quantity'}} : {{weapon.system.quantity}}">{{weapon.system.actlEnc}}</div>
+        <div class="font14 centre">{{#if weapon.system.ammoCalibre}}{{weapon.system.ammoCalibre}}{{else}}-{{/if}}</div>
+        {{#isOr (eq weapon.system.ammo null) (eq weapon.system.ammo 0)}}
+          <div class="font14 centre">-</div>
+        {{else}}
+          <div class="ammo-inline" title="{{ localize 'BRP.ammoCap' }}: {{weapon.system.ammo}}">
+            <div class="font14 centre ammo-readout">{{weapon.system.ammoCurr}}/{{weapon.system.ammo}}</div>
+            <button type="button" class="ammo-action ammo-reload" data-item-id="{{weapon._id}}" data-ammo-action="reloadFull" title="Reload full magazine">
+              <i class="fas fa-rotate-right"></i>
+            </button>
+          </div>
+        {{/isOr}}
+        <div class="font14 centre item item-toggle" data-item-id="{{weapon._id}}" data-property="equipStatus" title="{{weapon.system.equippedName}}">
+          {{#if (eq weapon.system.equipStatus 'carried')}}<i class="fas fa-hand-holding"></i>{{/if}}
+          {{#if (eq weapon.system.equipStatus 'packed')}}<i class="fas fa-treasure-chest"></i>{{/if}}
+          {{#if (eq weapon.system.equipStatus 'stored')}}<i class="fas fa-warehouse"></i>{{/if}}
+        </div>
+        <div class="mediumIcon centre item item-delete" data-item-id="{{weapon._id}}" title="{{ localize 'BRP.deleteWeapon' }}">
+          <a><i class="item-control fas fa-trash"></i></a>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+
+  <div class="sla-subsection-separator"></div>
+  <div class="weapon-section-label">{{ localize 'BRP.weapons' }} (Melee)</div>
+  <div class="weapon-melee-grid">
+    <div class="diff-label centre">{{ localize 'BRP.icon' }}</div>
+    <div class="diff-label">{{ localize 'BRP.weapon'}}</div>
+    <div class="diff-label centre" title="{{localize 'BRP.scoreIncHint'}}">{{ localize 'BRP.chance'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.attack' }}"><i class="fa-solid fa-dice-d20 sla-combat-roll-glyph"></i></div>
+    <div class="diff-label centre">{{ localize 'BRP.damage'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.range'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.att'}}</div>
+    <div class="diff-label centre" title="{{localize 'BRP.handCrewHint'}}">{{ localize 'BRP.handCrew'}}</div>
+    <div class="diff-label centre" title="{{localize 'BRP.hpApHint' label=system.health.labelAbbr}}">{{system.health.labelAbbr}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.enc'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.status' }}">{{ localize 'BRP.statusShort'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.delete' }}</div>
+  </div>
+  <ol class="gr-list">
+    {{#each meleeWeapons as |weapon key|}}
+      <li class="item weapon-melee-grid" data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">
+        <div class="item item-edit centre weapon-icon-cell" data-item-id="{{weapon._id}}">
+          <img class="combat-weapon-icon" src="{{weapon.img}}" title="{{weapon.name}}" />
+        </div>
+        <div class="item item-edit weapon-name contextmenu {{#if weapon.system.hasEffects}}italics bold{{/if}}" {{#if weapon.system.hasEffects}} title="{{localize 'BRP.activeEffect'}}" {{/if}} data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">{{weapon.name}}</div>
+        <div class="font14 centre" title="{{weapon.system.skillName}}">{{weapon.system.skillScoreDisplay}}</div>
+        <div class="item rollable weapon-name centre combat-roll-icon combat-roll-cell" title="{{ localize 'BRP.attack' }}" data-item-id="{{weapon._id}}" data-skill-id="{{weapon.system.sourceID}}">
+          <i class="fa-solid fa-dice-d20 sla-combat-roll-glyph"></i>
+        </div>
+        <div class="item font14 {{#unless weapon.system.specialDmg}}rollable damage-name{{/unless}} centre" data-item-id="{{weapon._id}}">{{weapon.system.dmgName}}</div>
+        <div class="font14 centre">{{weapon.system.rangeName}}</div>
+        <div class="font14 centre" title="{{localize 'BRP.rof'}} : {{weapon.system.rof}}">{{weapon.system.att}}</div>
+        {{#if (eq weapon.system.weaponType 'artillery')}}
+          <div class="font14 centre">{{weapon.system.crew}}</div>
+        {{else}}
+          <div class="font14 centre">{{weapon.system.hands}}</div>
+        {{/if}}
+        <div class="font14 centre">
+          {{#if (gt weapon.system.hp 0)}}
+            {{weapon.system.hpCurr}}/{{weapon.system.hp}}
+          {{else}}
+            -
+          {{/if}}
+        </div>
+        <div class="font14 centre" title="{{localize 'BRP.quantity'}} : {{weapon.system.quantity}}">{{weapon.system.actlEnc}}</div>
+        <div class="font14 centre item item-toggle" data-item-id="{{weapon._id}}" data-property="equipStatus" title="{{weapon.system.equippedName}}">
+          {{#if (eq weapon.system.equipStatus 'carried')}}<i class="fas fa-hand-holding"></i>{{/if}}
+          {{#if (eq weapon.system.equipStatus 'packed')}}<i class="fas fa-treasure-chest"></i>{{/if}}
+          {{#if (eq weapon.system.equipStatus 'stored')}}<i class="fas fa-warehouse"></i>{{/if}}
+        </div>
+        <div class="mediumIcon centre item item-delete" data-item-id="{{weapon._id}}" title="{{ localize 'BRP.deleteWeapon' }}">
+          <a><i class="item-control fas fa-trash"></i></a>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+  <div class="sla-subsection-separator"></div>
+</section>

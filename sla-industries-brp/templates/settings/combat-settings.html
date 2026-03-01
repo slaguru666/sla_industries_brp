@@ -1,0 +1,122 @@
+<form class="brp settingsForm flexcol" autocomplete="off">
+  <h2 class="bold">{{localize 'BRP.Settings.combatOptions'}}</h2>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.initiativeMode'}}</label>
+    <div class="form-fields">
+      <select class="centre" name="initiativeMode" data-dtype="String">
+        {{selectOptions initiativeModeList selected=initiativeMode.value}}
+      </select>
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.initiativeModeHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.escalationDifferentiation'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked escalationDifferentiation.value}} name="escalationDifferentiation">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.escalationDifferentiationHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.initStat'}}</label>
+    <div class="form-fields">
+      <select class="centre" name="initStat" data-dtype="String">
+        {{selectOptions initChoiceList selected=initStat.value}}
+      </select>
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.initStatHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.initMod'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input class="centre" name="initMod" type="text" value="{{initMod.value}}" />
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.initModHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.initRound'}}</label>
+    <div class="form-fields">
+      <select class="centre" name="initRound" data-dtype="String">
+        {{selectOptions initRoundList selected=initRound.value}}
+      </select>
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.initRoundHint'}}</p>
+  </div>
+
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.quickCombat'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked quickCombat.value}} name="quickCombat">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.quickCombatHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.ammoTracking'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked ammoTracking.value}} name="ammoTracking">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.ammoTrackingHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.ammoAutoSpend'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked ammoAutoSpend.value}} name="ammoAutoSpend">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.ammoAutoSpendHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.ammoNotify'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked ammoNotify.value}} name="ammoNotify">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.ammoNotifyHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.combatTargetingMode'}}</label>
+    <div class="form-fields">
+      <select class="centre" name="combatTargetingMode" data-dtype="String">
+        {{selectOptions combatTargetingModeList selected=combatTargetingMode.value}}
+      </select>
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.combatTargetingModeHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.ammoDeficitMode'}}</label>
+    <div class="form-fields">
+      <select class="centre" name="ammoDeficitMode" data-dtype="String">
+        {{selectOptions ammoDeficitModeList selected=ammoDeficitMode.value}}
+      </select>
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.ammoDeficitModeHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">{{localize 'BRP.Settings.debugRollOverlay'}}</label>
+    <div class="form-fields" style="flex: 1;">
+      <input type="checkbox" {{checked debugRollOverlay.value}} name="debugRollOverlay">
+    </div>
+    <p class="settingNote">{{localize 'BRP.Settings.debugRollOverlayHint'}}</p>
+  </div>
+
+
+  <br>
+  <footer class="sheet-footer flexrow">
+    <button class="settingsButton" type="submit" name="submit">
+      <i class="far fa-save"></i> {{localize "Save Changes"}}
+    </button>
+    <button class="settingsButton" type="button" name="reset">
+      <i class="fas fa-undo"></i> {{localize "Reset Defaults"}}
+    </button>
+  </footer>
+  <br>
+</form>

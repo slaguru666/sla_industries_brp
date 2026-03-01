@@ -1,0 +1,82 @@
+<form class="brp settingsForm flexcol" autocomplete="off">
+  <h2 class="bold">SLA Rules Control Panel</h2>
+
+  <div class="form-group">
+    <label class="bold">Pulp SLA (Double HP)</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.pulpSla}} name="pulpSla"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Use Hit Locations</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.useHPL}} name="useHPL"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Use SAN</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.useSAN}} name="useSAN"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Use COOL Track</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.useRes5}} name="useRes5"></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">Initiative Mode</label>
+    <div class="form-fields"><select name="initiativeMode" data-dtype="String">{{selectOptions initiativeModeList selected=values.initiativeMode}}</select></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Quick Combat</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.quickCombat}} name="quickCombat"></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">Damage Target Mode</label>
+    <div class="form-fields"><select name="damageTargetMode" data-dtype="String">{{selectOptions targetModeList selected=values.damageTargetMode}}</select></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">Ammo Tracking</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.ammoTracking}} name="ammoTracking"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Auto Spend Ammo</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.ammoAutoSpend}} name="ammoAutoSpend"></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">Show Manipulation Skills</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.showManipulationSkills}} name="showManipulationSkills"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Show Social Skills</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.showSocialSkills}} name="showSocialSkills"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Show Supernatural Skills</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.showSupernaturalSkills}} name="showSupernaturalSkills"></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">GM Debug Roll Overlay</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.debugRollOverlay}} name="debugRollOverlay"></div>
+  </div>
+
+  <div class="form-group">
+    <label class="bold">Debt Interest Enabled</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.economyDebtInterestEnabled}} name="economyDebtInterestEnabled"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Debt Interest % (per cycle)</label>
+    <div class="form-fields"><input class="centre" name="economyDebtInterestRate" type="number" value="{{values.economyDebtInterestRate}}" step="0.1" /></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Financier Cut Enabled</label>
+    <div class="form-fields"><input type="checkbox" {{checked values.economyFinancierCutEnabled}} name="economyFinancierCutEnabled"></div>
+  </div>
+  <div class="form-group">
+    <label class="bold">Financier Cut %</label>
+    <div class="form-fields"><input class="centre" name="economyFinancierCutPercent" type="number" value="{{values.economyFinancierCutPercent}}" step="0.1" /></div>
+  </div>
+
+  <footer class="sheet-footer flexrow">
+    <button class="settingsButton" type="submit" name="submit"><i class="far fa-save"></i> {{localize "Save Changes"}}</button>
+  </footer>
+</form>

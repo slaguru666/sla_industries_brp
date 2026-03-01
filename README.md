@@ -1,51 +1,46 @@
-# SLA BRP Foundry World
+# SLA BRP Foundry Packages
 
-Installable Foundry VTT world package for `sla-brp`.
+Installable Foundry VTT package repo for:
+
+- System: `sla-industries-brp`
+- World: `sla-brp`
+
+## Install URLs
+
+- System manifest:
+  `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-brp/system.json`
+- World manifest:
+  `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json`
+
+## Important Install Order
+
+1. Install **System** `sla-industries-brp` first.
+2. Install **World** `sla-brp` second.
+
+If the system is not installed first, Foundry marks the world unavailable.
 
 ## Repo Layout
 
-- `sla-brp/` - The world content directory (must contain `world.json`).
-- `scripts/build-release.sh` - Builds `dist/sla-brp.zip` for Foundry install.
-
-## One-time Setup
-
-1. Create a GitHub repo and push this folder.
-2. Update these fields in `sla-brp/world.json`:
-   - `manifest`
-   - `download`
-   - `url`
-
-Use:
-
-- `manifest`: `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json`
-- `download`: `https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-brp.zip`
-- `url`: `https://github.com/slaguru666/sla_industries_brp`
+- `sla-industries-brp/` - system content (`system.json`)
+- `sla-brp/` - world content (`world.json`)
+- `scripts/build-release.sh` - builds both release zips into `dist/`
 
 ## Release Steps
 
-1. Update `sla-brp/world.json` `version`.
-2. Build zip locally:
+1. Update versions in:
+   - `sla-industries-brp/system.json`
+   - `sla-brp/world.json`
+2. Build zips:
 
    ```bash
    ./scripts/build-release.sh
    ```
 
-3. Create a GitHub release and upload `dist/sla-brp.zip` as an asset.
-   - If you publish a GitHub release event, the included workflow can auto-attach `dist/sla-brp.zip`.
-
-## Install in Foundry
-
-In Foundry setup screen:
-
-1. Open **Game Worlds**.
-2. Click **Install World**.
-3. Paste manifest URL:
-
-   `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json`
-
-4. Install.
+3. Create a GitHub release and attach:
+   - `dist/sla-industries-brp.zip`
+   - `dist/sla-brp.zip`
 
 ## Notes
 
-- This world requires system ID: `sla-industries-brp`.
-- Keep world assets and data inside `sla-brp/` so the zip stays installable.
+- World `sla-brp` depends on system ID `sla-industries-brp`.
+- Download URLs use GitHub `releases/latest/download/...`, so the latest release must include both zip assets.

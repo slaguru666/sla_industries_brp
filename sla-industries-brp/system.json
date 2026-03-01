@@ -1,0 +1,92 @@
+{
+  "id": "sla-industries-brp",
+  "title": "SLA Industries BRP (Draft)",
+  "description": "Draft SLA Industries conversion of the BRP system for FoundryVTT.",
+  "version": "13.1.52",
+  "coreVersion": "13.351",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Dangermouse",
+      "flags": {}
+    },
+    {
+      "name": "JamesB",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "module/brp.mjs",
+    "module/setup/load.mjs"
+  ],
+  "styles": [
+    "css/brp.css"
+  ],
+  "packs": [
+    {
+      "label": "SLA ID Macros",
+      "type": "Macro",
+      "name": "brp-id-macros",
+      "path": "packs/brp-id-macros",
+      "system": "sla-industries-brp",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "es",
+      "name": "Español (Spanish)",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "grid": {
+    "units": "m"
+  },
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/sla-industries-brp/assets/sla-logo-powered_by-solid.svg",
+      "thumbnail": "systems/sla-industries-brp/assets/sla-logo-powered_by-solid.svg",
+      "loop": false,
+      "flags": {}
+    }
+  ],
+  "documentTypes": {
+    "RegionBehavior": {
+      "ChaosiumCanvasInterfaceAmbientLightToggle": {},
+      "ChaosiumCanvasInterfaceDrawingToggle": {},
+      "ChaosiumCanvasInterfaceMapPinToggle": {},
+      "ChaosiumCanvasInterfaceOpenDocument": {},
+      "ChaosiumCanvasInterfacePlaySound": {},
+      "ChaosiumCanvasInterfaceToScene": {},
+      "ChaosiumCanvasInterfaceTileToggle": {}
+    }
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "socket": true,
+  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-brp/system.json",
+  "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-industries-brp.zip",
+  "url": "https://github.com/slaguru666/sla_industries_brp",
+  "license": "LICENSE.txt",
+  "changelog": "CHANGELOG.md"
+}

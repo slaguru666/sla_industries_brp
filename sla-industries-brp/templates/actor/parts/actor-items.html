@@ -1,0 +1,159 @@
+<section>
+  <div class="armour-tab-grid">
+    <div class="diff-label centre">{{ localize 'BRP.icon' }}</div>
+    <div class="diff-label armour-toggle" {{#if useHPL}} title="{{localize 'BRP.armExpandHint'}}" {{/if}}>{{ localize 'BRP.armour'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.ap'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.enc'}}</div>
+    <div class="diff-label centre" title="Mnpl/Perc/Phys/Stealth">{{ localize 'BRP.skillMod'}} (M/P/Ph/S)</div>
+    <div class="diff-label centre">{{ localize 'BRP.hit-location'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.equipStatusHint' }}">{{ localize 'BRP.status'}}</div>
+    <div class="diff-label centre item-create" title="{{ localize 'BRP.addArmour' }}" data-type="armour">
+      <a class="large-icon"><i class="item-control fas fa-plus"></i></a>
+    </div>
+    <div class="diff-label centre" title="{{ localize 'BRP.delete' }}"><i class="fas fa-trash"></i></div>
+  </div>
+
+  {{#each armours as |armour key|}}
+    <li class="item" style="list-style: none;" data-item-id="{{armour._id}}">
+      <div class="armour-tab-grid">
+        {{#if (eq armour.system.list 0)}}
+          {{#if (gt armour.system.length 0)}}
+            {{#if armour.system.hide}}
+              <div class="item item-edit centre weapon-icon-cell" data-item-id="{{armour._id}}">
+                <img class="combat-weapon-icon" src="{{armour.img}}" title="{{armour.name}}" />
+              </div>
+              <div class="bold {{#if armour.system.hasEffects}}italics bold{{/if}} darkred font14">{{armour.name}}</div>
+              {{#if ../useAVRand}}
+                {{#if (ne armour.system.avr1 "")}}
+                  <div class="hitloc-name centre">{{armour.system.avr1}}</div>
+                {{else}}
+                  <div></div>
+                {{/if}}
+              {{else}}
+                <div class="hitloc-name centre">{{armour.system.av1}}</div>
+              {{/if}}
+              <div class="hitloc-name centre">{{armour.system.enc}}</div>
+              <div class="hitloc-name centre" title="Mnpl/Perc/Phys/Stealth">M{{armour.system.mnplmod}}/P{{armour.system.percmod}}/Ph{{armour.system.physmod}}/S{{armour.system.stealthmod}}</div>
+              <div class="hitloc-name centre">{{armour.system.hitlocName}}</div>
+              <div></div>
+              <div class="item item-toggle centre" title="{{localize 'BRP.expand'}}" data-item-id="{{armour.system.hitlocID}}" data-property="hide"><a class="font16 darkred"><i class="fas fa-solid fa-arrow-down-short-wide"></i></a></div>
+              <div></div>
+            {{/if}}
+          {{/if}}
+        {{else}}
+          {{#unless armour.system.hide}}
+            <div class="item item-edit centre weapon-icon-cell" data-item-id="{{armour._id}}">
+              <img class="combat-weapon-icon" src="{{armour.img}}" title="{{armour.name}}" />
+            </div>
+            <div class="item item-edit font14 {{#if armour.system.hasEffects}}italics bold{{/if}} armour-name contextmenu" {{#if armour.system.hasEffects}} title="{{localize 'BRP.activeEffect'}}"{{/if}} data-item-id="{{armour._id}}">{{armour.name}}</div>
+            {{#if ../useAVRand}}
+              <div class="hitloc-name centre">{{armour.system.avr1}} </div>
+            {{else}}
+              <div class="hitloc-name centre">{{armour.system.av1}}</div>
+            {{/if}}
+
+            <div class="hitloc-name centre">{{armour.system.actlEnc}}</div>
+            <div class="hitloc-name centre" title="Mnpl/Perc/Phys/Stealth">M{{armour.system.mnplmod}}/P{{armour.system.percmod}}/Ph{{armour.system.physmod}}/S{{armour.system.stealthmod}}</div>
+            <div class="hitloc-name centre">{{armour.system.hitlocName}}</div>
+            <div class="hitloc-name centre item item-toggle" title="{{armour.system.equippedName}}" data-item-id="{{armour._id}}" data-property="equipStatus">
+              {{#if (eq armour.system.equipStatus 'worn')}}<i class="fas fa-shirt"></i>{{/if}}
+              {{#if (eq armour.system.equipStatus 'carried')}}<i class="fas fa-hand-holding"></i>{{/if}}
+              {{#if (eq armour.system.equipStatus 'packed')}}<i class="fas fa-treasure-chest"></i>{{/if}}
+              {{#if (eq armour.system.equipStatus 'stored')}}<i class="fas fa-warehouse"></i>{{/if}}
+            </div>
+            {{#if armour.system.show}}
+              <div class="item item-toggle centre" title="{{localize 'BRP.collapse'}}" data-item-id="{{armour.system.hitlocID}}" data-property="hide"><a class="font16 darkred"><i class="fas fa-solid fa-arrow-up-wide-short"></i></a></div>
+            {{else}}
+              <div></div>
+            {{/if}}
+            <div class="mediumIcon centre item item-delete" data-item-id="{{armour._id}}" title="{{ localize 'BRP.deleteArmour' }}">
+              <a><i class="item-control fas fa-trash"></i></a>
+            </div>
+          {{/unless}}
+        {{/if}}
+      </div>
+    </li>
+  {{/each}}
+  <div class="sla-subsection-separator"></div>
+
+  <div class="gear-tab-grid">
+    <div class="diff-label centre">{{ localize 'BRP.icon' }}</div>
+    <div class="diff-label ">{{ localize 'BRP.equipment'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.quantity'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.enc'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.crd'}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.equipStatusHint' }}">{{ localize 'BRP.status'}}</div>
+    <div class="diff-label centre item-create" title="{{ localize 'BRP.addGear' }}" data-type="gear">
+      <a class="large-icon"><i class="item-control fas fa-plus"></i></a>
+    </div>
+    <div class="diff-label centre">{{ localize 'BRP.delete' }}</div>
+  </div>
+  {{#each gears as |gear key|}}
+    <li class="item" style="list-style: none;" data-item-id="{{gear._id}}">
+      <div class="gear-tab-grid">
+        <div class="item item-edit centre weapon-icon-cell" data-item-id="{{gear._id}}">
+          <img class="combat-weapon-icon" src="{{gear.img}}" title="{{gear.name}}" />
+        </div>
+        <div class="item item-edit font14 {{#if gear.system.hasEffects}}italics bold{{/if}} gear-name contextmenu" data-item-id="{{gear._id}}">{{gear.name}}</div>
+        <div class="combat-input-small"> <input class="item centre inline-edit" data-field="quantity" data-item-id="{{gear._id}}" name="gear.system.quantity" type="text" value="{{gear.system.quantity}}" data-dtype="Number" /></div>
+        <div class="hitloc-name centre">{{gear.system.actlEnc}}</div>
+        <div class="hitloc-name centre" title="{{localize 'BRP.crdEach'}} / {{localize 'BRP.crdTotal'}}">{{gear.system.crdDisplay}}</div>
+        <div class="hitloc-name centre item item-toggle" title="{{gear.system.equippedName}}" data-item-id="{{gear._id}}" data-property="equipStatus">
+          {{#if (eq gear.system.equipStatus 'carried')}}<i class="fas fa-hand-holding"></i>{{/if}}
+          {{#if (eq gear.system.equipStatus 'packed')}}<i class="fas fa-treasure-chest"></i>{{/if}}
+          {{#if (eq gear.system.equipStatus 'stored')}}<i class="fas fa-warehouse"></i>{{/if}}
+        </div>
+        <div></div>
+        <div class="mediumIcon centre item item-delete" data-item-id="{{gear._id}}" title="{{ localize 'BRP.deleteGear' }}">
+          <a><i class="item-control fas fa-trash"></i></a>
+        </div>
+      </div>
+    </li>
+  {{/each}}
+
+  <div class="sla-subsection-separator"></div>
+
+  <div class="drug-tab-grid">
+    <div class="diff-label centre">{{ localize 'BRP.icon' }}</div>
+    <div class="diff-label">{{ localize 'BRP.drugs' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.quantity' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.crd' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.status' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.duration' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.drugUse' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.drugClose' }}</div>
+    <div class="diff-label centre">{{ localize 'BRP.delete' }}</div>
+  </div>
+  {{#each drugs as |drug key|}}
+    <li class="item" style="list-style: none;" data-item-id="{{drug._id}}">
+      <div class="drug-tab-grid">
+        <div class="item item-edit centre weapon-icon-cell" data-item-id="{{drug._id}}">
+          <img class="combat-weapon-icon" src="{{drug.img}}" title="{{drug.name}}" />
+        </div>
+        <div class="item item-edit font14 {{#if drug.system.hasEffects}}italics bold{{/if}} gear-name contextmenu" data-item-id="{{drug._id}}">{{drug.name}}</div>
+        <div class="combat-input-small"> <input class="item centre inline-edit" data-field="quantity" data-item-id="{{drug._id}}" name="gear.system.quantity" type="text" value="{{drug.system.quantity}}" data-dtype="Number" /></div>
+        <div class="hitloc-name centre">{{drug.system.crdDisplay}}</div>
+        <div class="hitloc-name centre">{{drug.system.drugStateLabel}}</div>
+        <div class="hitloc-name centre">{{#if drug.system.drugDuration}}{{drug.system.drugDuration}}{{else}}-{{/if}}</div>
+        <div class="centre">
+          <button type="button" class="drug-action drug-use-btn" data-drug-action="use" data-item-id="{{drug._id}}" data-drug-id="{{drug.system.drugId}}" title="{{localize 'BRP.drugUse'}}" {{#unless drug.system.drugCanUse}}disabled{{/unless}}>
+            <i class="fas fa-syringe"></i>
+          </button>
+        </div>
+        <div class="centre">
+          <button type="button" class="drug-action drug-close-btn" data-drug-action="close" data-item-id="{{drug._id}}" data-drug-id="{{drug.system.drugId}}" title="{{localize 'BRP.drugClose'}}" {{#unless drug.system.drugCanClose}}disabled{{/unless}}>
+            <i class="fas fa-power-off"></i>
+          </button>
+        </div>
+        <div class="mediumIcon centre item item-delete" data-item-id="{{drug._id}}" title="{{ localize 'BRP.deleteGear' }}">
+          <a><i class="item-control fas fa-trash"></i></a>
+        </div>
+        <div class="drug-item-summary">{{#if drug.system.drugSummary}}{{drug.system.drugSummary}}{{/if}}</div>
+      </div>
+    </li>
+  {{/each}}
+  {{#unless drugs.length}}
+    <div class="font12">{{localize 'BRP.none'}}</div>
+  {{/unless}}
+
+</section>

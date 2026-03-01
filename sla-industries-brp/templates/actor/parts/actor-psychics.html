@@ -1,0 +1,36 @@
+<ol class="magic-list">
+  <div class="psychic-listitem">
+    <div class="diff-label">{{psychicLabel}}</div>
+    <div></div>
+    <div class="diff-label centre" title="{{ localize 'BRP.rangePsyHint'}}">{{ localize 'BRP.range'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.duration'}}</div>
+    <div class="diff-label centre">{{system.power.labelAbbr}}</div>
+    <div class="diff-label centre" title="{{ localize 'BRP.impactHint' }}">{{ localize 'BRP.impact'}}</div>
+    <div class="diff-label centre">{{ localize 'BRP.total'}}</div>
+    <div class="diff-label centre">USE</div>
+  </div>
+  {{#each psychics as |psychic id|}}
+    <li class="item psychic-listitem" data-item-id="{{psychic._id}}">
+      <div class="item-edit psychic-name contextmenu" data-item-id="{{psychic._id}}" data-xp="{{psychic.system.improve}}">
+        <div>{{psychic.name}}</div>
+        <div class="ebb-formulation-skill">Skill: {{psychic.system.ebbFormulationSkill}}</div>
+      </div>
+      <div title="{{ localize 'BRP.improve' }}"><a class="item-toggle" data-property="improve"><i class="{{#if psychic.system.improve}}fa-regular fa-square-check{{else}}fa-regular fa-square{{/if}}"></i></a></div>
+      <div class="centre">{{psychic.system.range}}</div>
+      <div class="centre">{{psychic.system.duration}}</div>
+      <div class="centre">{{psychic.system.pppl}}</div>
+      <div class="centre {{#unless (eq psychic.system.damage '')}} rollable impact {{/unless}}">{{psychic.system.damage}}</div>
+      <div
+        class="centre rollable ebb-roll"
+        data-item-id="{{psychic._id}}"
+        data-skill-id="{{psychic.system.ebbSkillId}}"
+        title="{{#if psychic.system.ebbSkillName}}{{psychic.system.ebbSkillName}}{{else}}{{psychic.name}}{{/if}}"
+      >{{psychic.system.ebbGrandTotal}}%</div>
+      <div class="centre">
+        <button class="ebb-action" data-item-id="{{psychic._id}}" data-ebb-action="use" title="Use EBB Ability">
+          <i class="fas fa-dice-d20"></i>
+        </button>
+      </div>
+    </li>
+  {{/each}}
+</ol>
