@@ -15,7 +15,16 @@ Companion module for `sla-industries-brp` with:
 
 ## Import Content Into A New World
 
-After installing the system and module, run this in a GM script macro:
+After installing the system and module:
+
+1. Open the **Compendium** tab.
+2. Click the new import button in the Compendium header, or right-click any `sla-industries-compendium` pack.
+3. Choose **Import SLA Companion Content**.
+4. Pick **Merge** or **Overwrite**.
+
+No script macro is required.
+
+Optional fallback (GM macro):
 
 ```js
 const { SLASeedImporter } = await import("/systems/sla-industries-brp/module/apps/sla-seed-importer.mjs");

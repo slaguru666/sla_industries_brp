@@ -25,7 +25,17 @@ If the system is not installed first, Foundry marks the world unavailable.
 
 ## Populate A Fresh World
 
-In a new `sla-industries-brp` world with the companion module enabled, run this as a GM script macro:
+In a new `sla-industries-brp` world with the companion module enabled:
+
+1. Open the **Compendium** tab.
+2. Use either:
+   - the new download button in the Compendium header, or
+   - right-click any `sla-industries-compendium` pack and choose **Import SLA Companion Content**.
+3. Choose **Merge** or **Overwrite** when prompted.
+
+No script macro is required.
+
+Optional fallback (GM script macro):
 
 ```js
 const { SLASeedImporter } = await import("/systems/sla-industries-brp/module/apps/sla-seed-importer.mjs");

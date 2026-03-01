@@ -1,7 +1,7 @@
 {
   "id": "sla-industries-compendium",
   "title": "SLA Industries Compendium (Draft)",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "coreVersion": "13.351",
   "compatibility": {
     "minimum": "13",
@@ -17,6 +17,9 @@
       "name": "Crys",
       "flags": {}
     }
+  ],
+  "esmodules": [
+    "scripts/companion-ui.mjs"
   ],
   "packs": [
     {
