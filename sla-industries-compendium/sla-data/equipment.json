@@ -1,0 +1,1160 @@
+{
+  "version": "0.2.1-draft2-weapons",
+  "source": "SLA_BRP.txt",
+  "weapons": [
+    {
+      "name": "MAC Knife",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Knife)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D4+1",
+      "db": 1,
+      "damageType": "impaling",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 8,
+      "special": "impale",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 0,
+      "notes": [
+        "Can be thrown to STR in metres using Throw.",
+        "On special, impale as per BRP."
+      ]
+    },
+    {
+      "name": "Standard Combat Knife",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Knife)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D4+2",
+      "db": 1,
+      "damageType": "impaling",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 8,
+      "special": "impale",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 0,
+      "notes": [
+        "Common sidearm for most Operatives."
+      ]
+    },
+    {
+      "name": "Collapsible Baton",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Club)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D6",
+      "db": 1,
+      "damageType": "crushing",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 10,
+      "special": "stun",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Can be carried concealed.",
+        "On special, apply crushing stun roll."
+      ]
+    },
+    {
+      "name": "GASH Pacifier Baton",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Club)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D6+1",
+      "db": 1,
+      "damageType": "crushing",
+      "reach": "Medium",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 12,
+      "special": "stun",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Standard Shiver baton.",
+        "On special, crushing stun as per BRP."
+      ]
+    },
+    {
+      "name": "Riot Shield",
+      "weaponType": "melee",
+      "skillRef": "Shield (Riot)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D4",
+      "db": 1,
+      "damageType": "knockback",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 12,
+      "special": "shield",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 2,
+      "notes": [
+        "Use BRP shield rules.",
+        "Provides cover vs missiles.",
+        "Armour profile: 8 vs melee, 6 vs firearms at covered location."
+      ]
+    },
+    {
+      "name": "Power Claymore",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (2H Sword)",
+      "skillRefAlt": "Melee Weapon (2-H Sword)",
+      "damage": "2D8",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Long",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 18,
+      "minStr": 15,
+      "minDex": 11,
+      "special": "bleeding",
+      "hands": "2H",
+      "price": "high",
+      "enc": 4,
+      "notes": [
+        "Frother two-handed powered greatsword.",
+        "On special, apply bleeding damage as per BRP."
+      ]
+    },
+    {
+      "name": "ITB Mutilator Sword",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (2H Sword)",
+      "skillRefAlt": "Melee Weapon (2-H Sword)",
+      "damage": "1D10+2",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Long",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 16,
+      "special": "bleeding",
+      "hands": "2H",
+      "price": "high",
+      "enc": 4,
+      "notes": [
+        "Chain-edged SLA classic; noisy.",
+        "GM may grant +20% Intimidate when used visibly."
+      ]
+    },
+    {
+      "name": "Vibro Sabre",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Sword)",
+      "skillRefAlt": "Melee Weapon (Any)",
+      "damage": "1D8+1",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Medium",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 14,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "high",
+      "enc": 2,
+      "notes": [
+        "High-quality vibro blade.",
+        "On special, apply bleeding."
+      ]
+    },
+    {
+      "name": "Vibro Blade",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Sword)",
+      "skillRefAlt": "Melee Weapon (Any)",
+      "damage": "1D8+1",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Medium",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 14,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "high",
+      "enc": 2,
+      "notes": [
+        "Variant naming for Vibro Sabre profile.",
+        "On special, apply bleeding."
+      ]
+    },
+    {
+      "name": "Chainaxe",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Axe)",
+      "skillRefAlt": "Melee Weapon (Any)",
+      "damage": "1D8+2",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Medium",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 16,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "high",
+      "enc": 3,
+      "notes": [
+        "On special, double damage modifier (GM call on crushing/bleeding mix)."
+      ]
+    },
+    {
+      "name": "Chainsaw (Improvised)",
+      "weaponType": "melee",
+      "skillRef": "Melee Weapon (Axe)",
+      "skillRefAlt": "Melee Weapon (Any)",
+      "damage": "2D6",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 14,
+      "special": "bleeding",
+      "hands": "2H",
+      "price": "low",
+      "enc": 4,
+      "notes": [
+        "On fumble, roll on fumble table and consider self-injury/equipment damage."
+      ]
+    },
+    {
+      "name": "Wraith Raider Claws",
+      "weaponType": "melee",
+      "skillRef": "Natural Weapon (Claws)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D4",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 0,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "none",
+      "enc": 0,
+      "notes": [
+        "Natural weapon; always available.",
+        "On special, bleeding."
+      ]
+    },
+    {
+      "name": "Shaktar Claws",
+      "weaponType": "melee",
+      "skillRef": "Natural Weapon (Claws)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D3",
+      "db": 1,
+      "damageType": "bleeding",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 0,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "none",
+      "enc": 0,
+      "notes": [
+        "Natural weapon for Shaktar."
+      ]
+    },
+    {
+      "name": "Stormer Claws",
+      "weaponType": "melee",
+      "skillRef": "Natural Weapon (Claws)",
+      "skillRefAlt": "Brawl",
+      "damage": "1D6",
+      "db": 1,
+      "damageType": "bleeding/crushing",
+      "reach": "Short",
+      "range": "Short",
+      "rof": 1,
+      "ammo": 0,
+      "hp": 0,
+      "special": "bleeding",
+      "hands": "1H",
+      "price": "none",
+      "enc": 0,
+      "notes": [
+        "Stormer 313/714 natural weapon.",
+        "Often combined with Regeneration rules."
+      ]
+    },
+    {
+      "name": "FEN 603 Auto-Pistol",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Pistol)",
+      "damage": "1D8+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "20m",
+      "rof": 2,
+      "rofText": "2 shots/round or 3-shot burst",
+      "ammo": 18,
+      "ammoText": "18-round magazine",
+      "malf": "99-00",
+      "special": "burst",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Standard Operative sidearm.",
+        "Treat burst as +20% to hit or extra hit per BRP burst rules."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 54,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 54
+    },
+    {
+      "name": "GA 50 Finisher",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Pistol)",
+      "damage": "1D10+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "15m",
+      "rof": 1,
+      "ammo": 8,
+      "ammoText": "8-round magazine",
+      "malf": "99-00",
+      "special": "none",
+      "hands": "1H",
+      "price": "high",
+      "enc": 2,
+      "notes": [
+        "Heavy, hard-hitting hand cannon.",
+        "Consider -10% to hit beyond half range."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 24,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 24
+    },
+    {
+      "name": "FEN 401 Shiver Pistol",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Pistol)",
+      "damage": "1D8",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "15m",
+      "rof": 2,
+      "ammo": 12,
+      "ammoText": "12-round magazine",
+      "malf": "99-00",
+      "special": "none",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Standard Shiver issue."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 36,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 36
+    },
+    {
+      "name": "FEN 204 Gunhead",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (SMG)",
+      "skillRefAlt": "Firearm (Auto/Support)",
+      "damage": "1D8+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "25m",
+      "rof": 3,
+      "rofText": "Semi / Burst / Full Auto",
+      "ammo": 30,
+      "ammoText": "30-round magazine",
+      "malf": "98-00",
+      "special": "auto",
+      "hands": "2H",
+      "price": "standard",
+      "enc": 2,
+      "notes": [
+        "Close-quarters spray platform.",
+        "Use BRP auto-fire rules."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 90,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 90
+    },
+    {
+      "name": "FEN 209 Machine Pistol",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (SMG)",
+      "skillRefAlt": "Firearm (Pistol)",
+      "damage": "1D8",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "15m",
+      "rof": 3,
+      "rofText": "Burst / Full Auto",
+      "ammo": 20,
+      "ammoText": "20-round magazine",
+      "malf": "99-00",
+      "special": "auto",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "One-handable.",
+        "Apply -10% to control full auto unless braced."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 60,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 60
+    },
+    {
+      "name": "FEN AR Assault Rifle",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Rifle)",
+      "damage": "2D6+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "100m",
+      "rof": 3,
+      "rofText": "Semi / Burst / Full Auto",
+      "ammo": 30,
+      "ammoText": "30-round magazine",
+      "malf": "98-00",
+      "special": "auto",
+      "hands": "2H",
+      "price": "standard",
+      "enc": 3,
+      "notes": [
+        "Standard squad rifle."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 90,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 90
+    },
+    {
+      "name": "FEN 981 Sniper Rifle",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Rifle)",
+      "damage": "2D8+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "250m",
+      "rof": 1,
+      "ammo": 10,
+      "ammoText": "10-round magazine",
+      "malf": "99-00",
+      "special": "impale",
+      "hands": "2H",
+      "price": "high",
+      "enc": 4,
+      "notes": [
+        "Scope; double range for aimed shots.",
+        "On special, apply impaling plus extra effect (e.g. ignore half armour)."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 30,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 30
+    },
+    {
+      "name": "FEN 701 Urban Carbine",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Rifle)",
+      "skillRefAlt": "Firearm (SMG)",
+      "damage": "1D10+1",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "60m",
+      "rof": 2,
+      "rofText": "Semi / Burst",
+      "ammo": 24,
+      "ammoText": "24-round magazine",
+      "malf": "99-00",
+      "special": "burst",
+      "hands": "2H",
+      "price": "standard",
+      "enc": 2,
+      "notes": [
+        "Compact rifle for confined environments."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 72,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 72
+    },
+    {
+      "name": "KPS Mangler Shotgun",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Shotgun)",
+      "skillRefAlt": "Firearm (Rifle)",
+      "damage": "4D6",
+      "damage2": "2D6",
+      "damage3": "0",
+      "db": 0,
+      "damageType": "shot",
+      "range": "10m",
+      "range2": "20m",
+      "range3": "20m+",
+      "rof": 1,
+      "ammo": 8,
+      "ammoText": "8-round tube or drum",
+      "malf": "98-00",
+      "special": "shotgun",
+      "hands": "2H",
+      "price": "standard",
+      "enc": 3,
+      "notes": [
+        "4D6 up to 10m, 2D6 from 10-20m, beyond 20m pellets ineffective.",
+        "Point-blank often gains +20% to hit."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 24,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 24
+    },
+    {
+      "name": "FEN 10 Street Sweeper Auto-Shotgun",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Shotgun)",
+      "skillRefAlt": "Firearm (Auto/Support)",
+      "damage": "3D6",
+      "damage2": "2D6",
+      "db": 0,
+      "damageType": "shot",
+      "range": "10m",
+      "range2": "20m",
+      "rof": 2,
+      "rofText": "2/round or 3-shell burst",
+      "ammo": 10,
+      "ammoText": "10-round drum",
+      "malf": "98-00",
+      "special": "auto",
+      "hands": "2H",
+      "price": "high",
+      "enc": 4,
+      "notes": [
+        "Apply extra recoil penalty on full auto (-20% if unbraced)."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 30,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 30
+    },
+    {
+      "name": "FEN Reaper LMG",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Heavy)",
+      "skillRefAlt": "Firearm (Auto/Support)",
+      "damage": "2D6+2",
+      "db": 0,
+      "damageType": "impaling",
+      "range": "150m",
+      "rof": 6,
+      "rofText": "Burst / Full Auto only",
+      "ammo": 100,
+      "ammoText": "100-round belt",
+      "malf": "97-00",
+      "special": "auto",
+      "hands": "2H",
+      "price": "very high",
+      "enc": 6,
+      "notes": [
+        "Use BRP auto-fire suppression.",
+        "Must be braced or set up."
+      ],
+      "ammoTag": "STD",
+      "ammoLoadedType": "STD",
+      "ammoReserveStd": 300,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 300
+    },
+    {
+      "name": "MILA Grenade Launcher",
+      "weaponType": "firearm",
+      "skillRef": "Firearm (Heavy)",
+      "skillRefAlt": "Throw",
+      "damage": "4D6",
+      "damage2": "2D6",
+      "db": 0,
+      "damageType": "explosive",
+      "range": "60m",
+      "range2": "6m splash",
+      "rof": 1,
+      "ammo": 6,
+      "ammoText": "6-round cylinder",
+      "malf": "98-00",
+      "special": "explosive",
+      "hands": "2H",
+      "price": "very high",
+      "enc": 5,
+      "notes": [
+        "HE shell profile: 4D6 in 3m radius, 2D6 in 3-6m.",
+        "Variants: HE, HESH, gas."
+      ],
+      "ammoTag": "HE",
+      "ammoLoadedType": "HE",
+      "ammoReserveStd": 0,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 18,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 18
+    },
+    {
+      "name": "Fragmentation Grenade",
+      "weaponType": "explosive",
+      "skillRef": "Throw",
+      "damage": "3D6",
+      "damage2": "2D6",
+      "damage3": "1D6",
+      "db": 0,
+      "damageType": "explosive",
+      "range": "3m",
+      "range2": "6m",
+      "range3": "10m",
+      "rof": 1,
+      "ammo": 0,
+      "ammoText": "Single use",
+      "special": "explosive",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Throw range usually STR in metres.",
+        "Use BRP blast rules; armour protects as normal."
+      ],
+      "ammoTag": "HE",
+      "ammoLoadedType": "HE",
+      "ammoReserveStd": 0,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 0
+    },
+    {
+      "name": "Stun Grenade",
+      "weaponType": "explosive",
+      "skillRef": "Throw",
+      "damage": "0",
+      "db": 0,
+      "damageType": "stun",
+      "range": "5m",
+      "rof": 1,
+      "ammo": 0,
+      "ammoText": "Single use",
+      "special": "stun",
+      "hands": "1H",
+      "price": "standard",
+      "enc": 1,
+      "notes": [
+        "Targets within 5m roll CONx5 or are stunned 1D3 rounds.",
+        "On success, -20% to actions for that round."
+      ],
+      "ammoTag": "HE",
+      "ammoLoadedType": "HE",
+      "ammoReserveStd": 0,
+      "ammoReserveAp": 0,
+      "ammoReserveHe": 0,
+      "ammoReserveHeap": 0,
+      "ammoReserve": 0
+    }
+  ],
+  "armour": [
+    {
+      "name": "Street Clothes / Leather Jacket",
+      "av1": 1,
+      "burden": "light",
+      "enc": 1,
+      "price": "inexpensive",
+      "coverage": "torso (jacket)",
+      "locationAV": {
+        "torso": 1
+      },
+      "notes": [
+        "Fashionable street wear with minimal ballistic protection.",
+        "No skill penalties."
+      ]
+    },
+    {
+      "name": "Chippy Civilian Armour",
+      "av1": 3,
+      "burden": "light",
+      "enc": 2,
+      "price": "cheap",
+      "coverage": "torso",
+      "locationAV": {
+        "torso": 3
+      },
+      "physmod": -10,
+      "stealthmod": -10,
+      "notes": [
+        "Cheap ceramic/kevlar vest used by civilians and low-end Operatives.",
+        "Minor penalties to Swim and Stealth."
+      ]
+    },
+    {
+      "name": "Shiver Flak Vest",
+      "av1": 4,
+      "burden": "moderate",
+      "enc": 3,
+      "price": "average",
+      "coverage": "torso, abdomen",
+      "locationAV": {
+        "torso": 4,
+        "abdomen": 4
+      },
+      "physmod": -10,
+      "notes": [
+        "Worn over uniform.",
+        "-10% to Climb and Swim."
+      ]
+    },
+    {
+      "name": "Full Shiver Armour",
+      "av1": 5,
+      "burden": "moderate",
+      "enc": 5,
+      "price": "average",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 5,
+        "abdomen": 5,
+        "arms": 5,
+        "legs": 5,
+        "head": 4
+      },
+      "physmod": -10,
+      "stealthmod": -10,
+      "notes": [
+        "Standard city-Shiver full load-out.",
+        "-10% to physical skills (Climb, Jump, Swim, Stealth)."
+      ]
+    },
+    {
+      "name": "Body Blocker (PP644)",
+      "av1": 5,
+      "burden": "moderate",
+      "enc": 4,
+      "price": "expensive",
+      "coverage": "torso, abdomen, arms, legs, helmet (optional)",
+      "locationAV": {
+        "torso": 5,
+        "abdomen": 5,
+        "arms": 3,
+        "legs": 3,
+        "head": 4
+      },
+      "physmod": -10,
+      "stealthmod": -10,
+      "notes": [
+        "Mid-tier Operative armour.",
+        "-10% to Stealth, Climb and Swim."
+      ]
+    },
+    {
+      "name": "Crackshot Armour",
+      "av1": 6,
+      "burden": "moderate",
+      "enc": 5,
+      "price": "expensive",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 6,
+        "abdomen": 6,
+        "arms": 4,
+        "legs": 4,
+        "head": 5
+      },
+      "physmod": -20,
+      "stealthmod": -10,
+      "notes": [
+        "Heavier ceramic plate armour.",
+        "-20% to Climb and Swim, -10% to Stealth."
+      ]
+    },
+    {
+      "name": "CAF - Complete Armour Fabrication",
+      "av1": 8,
+      "burden": "cumbersome",
+      "enc": 8,
+      "price": "restricted",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 8,
+        "abdomen": 8,
+        "arms": 6,
+        "legs": 6,
+        "head": 7
+      },
+      "physmod": -20,
+      "stealthmod": -20,
+      "notes": [
+        "Iconic full Operative armour suit.",
+        "-20% to physical skills (Climb, Jump, Swim, Stealth).",
+        "Good against small-arms; heavy weapons still hurt."
+      ]
+    },
+    {
+      "name": "Dogeybone HARD Armour",
+      "av1": 10,
+      "burden": "cumbersome",
+      "enc": 10,
+      "price": "restricted",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 10,
+        "abdomen": 10,
+        "arms": 8,
+        "legs": 8,
+        "head": 9
+      },
+      "physmod": -30,
+      "stealthmod": -30,
+      "movMod": -1,
+      "specialRules": [
+        "Treat as Dogeybone-or-heavier for impact and battering effects."
+      ],
+      "notes": [
+        "Heavy assault armour used by Death Squad and Stormers.",
+        "-30% to Climb, Swim and Stealth; -1 MOV."
+      ]
+    },
+    {
+      "name": "Shock Armour",
+      "av1": 9,
+      "burden": "cumbersome",
+      "enc": 9,
+      "price": "restricted",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 9,
+        "abdomen": 9,
+        "arms": 7,
+        "legs": 7,
+        "head": 8
+      },
+      "specialRules": [
+        "On failed melee penetration with unarmed or conductive weapon, attacker takes 1D4 and rolls CONx5 or is stunned 1 round."
+      ],
+      "notes": [
+        "Electrified assault armour."
+      ]
+    },
+    {
+      "name": "Stealth Suit",
+      "av1": 3,
+      "burden": "light",
+      "enc": 2,
+      "price": "expensive",
+      "coverage": "torso, abdomen, arms, legs",
+      "locationAV": {
+        "torso": 3,
+        "abdomen": 3,
+        "arms": 2,
+        "legs": 2
+      },
+      "stealthmod": 20,
+      "notes": [
+        "Wraith/Xeno favourite stealth armour.",
+        "+20% Stealth; no stealth penalty.",
+        "Not rated vs HE; GM may halve AV vs blast."
+      ]
+    },
+    {
+      "name": "Ebb Deathsuit (Ebon / Brain Waster)",
+      "av1": 4,
+      "burden": "light",
+      "enc": 1,
+      "price": "restricted",
+      "coverage": "torso, abdomen, arms, legs, head",
+      "locationAV": {
+        "torso": 4,
+        "abdomen": 4,
+        "arms": 4,
+        "legs": 4,
+        "head": 4
+      },
+      "kineticAV": 4,
+      "energyAV": 6,
+      "specialRules": [
+        "Living armour with Ebb interaction and additional power storage.",
+        "If reduced to 0 armour HP it dies and becomes inert."
+      ],
+      "notes": [
+        "Counts as living armour.",
+        "AV 4 vs kinetic, AV 6 vs Ebb/energy."
+      ]
+    },
+    {
+      "name": "DN Power Armour",
+      "av1": 12,
+      "burden": "cumbersome",
+      "enc": 12,
+      "price": "priceless",
+      "coverage": "torso, abdomen, arms, legs, helmet",
+      "locationAV": {
+        "torso": 12,
+        "abdomen": 12,
+        "arms": 10,
+        "legs": 10,
+        "head": 11
+      },
+      "stealthmod": -30,
+      "poweredEnc": 6,
+      "strSkillMod": 20,
+      "movBonus": 1,
+      "specialRules": [
+        "Immune to most small melee weapons; 0 post-AV knife hits are bruising only."
+      ],
+      "notes": [
+        "Integrated servos and power assist.",
+        "Treat ENC 12 as ENC 6 for movement.",
+        "+20% STR-based skill checks and +1 MOV, -30% Stealth."
+      ]
+    },
+    {
+      "name": "Light Thresher Suit",
+      "av1": 10,
+      "burden": "cumbersome",
+      "enc": 10,
+      "price": "priceless",
+      "coverage": "all locations",
+      "locationAV": {
+        "torso": 10,
+        "abdomen": 10,
+        "arms": 10,
+        "legs": 10,
+        "head": 10
+      },
+      "poweredEnc": 5,
+      "notes": [
+        "Wargame-level military suit; use sparingly in street campaigns.",
+        "Powered ENC: count as 5 for movement."
+      ]
+    },
+    {
+      "name": "Heavy Thresher Suit",
+      "av1": 14,
+      "burden": "cumbersome",
+      "enc": 14,
+      "price": "priceless",
+      "coverage": "all locations",
+      "locationAV": {
+        "torso": 14,
+        "abdomen": 14,
+        "arms": 14,
+        "legs": 14,
+        "head": 14
+      },
+      "poweredEnc": 7,
+      "notes": [
+        "Boss-fight grade military platform that shrugs off most street hardware.",
+        "Powered ENC: count as 7 for movement."
+      ]
+    }
+  ],
+  "packageLoadouts": {
+    "Death Squad": {
+      "weapons": [
+        "FEN AR Assault Rifle",
+        "FEN 603 Auto-Pistol",
+        "ITB Mutilator Sword"
+      ],
+      "armour": [
+        "Dogeybone HARD Armour"
+      ]
+    },
+    "Kick Murder Squad": {
+      "weapons": [
+        "Collapsible Baton",
+        "Standard Combat Knife",
+        "FEN 209 Machine Pistol"
+      ],
+      "armour": [
+        "Full Shiver Armour"
+      ]
+    },
+    "Kick Murder": {
+      "weapons": [
+        "Collapsible Baton",
+        "Standard Combat Knife",
+        "FEN 209 Machine Pistol"
+      ],
+      "armour": [
+        "Full Shiver Armour"
+      ]
+    },
+    "Investigation and Interrogation": {
+      "weapons": [
+        "FEN 401 Shiver Pistol",
+        "GASH Pacifier Baton"
+      ],
+      "armour": [
+        "Stealth Suit"
+      ]
+    },
+    "Investigation": {
+      "weapons": [
+        "FEN 401 Shiver Pistol",
+        "GASH Pacifier Baton"
+      ],
+      "armour": [
+        "Stealth Suit"
+      ]
+    },
+    "Strike Squad": {
+      "weapons": [
+        "FEN AR Assault Rifle",
+        "FEN 603 Auto-Pistol",
+        "KPS Mangler Shotgun"
+      ],
+      "armour": [
+        "Body Blocker (PP644)"
+      ]
+    },
+    "Medical": {
+      "weapons": [
+        "FEN 401 Shiver Pistol",
+        "Stun Grenade"
+      ],
+      "armour": [
+        "Shiver Flak Vest"
+      ]
+    },
+    "Scouting": {
+      "weapons": [
+        "FEN 981 Sniper Rifle",
+        "MAC Knife",
+        "Fragmentation Grenade"
+      ],
+      "armour": [
+        "Stealth Suit"
+      ]
+    },
+    "Media": {
+      "weapons": [
+        "FEN 401 Shiver Pistol"
+      ],
+      "armour": [
+        "Street Clothes / Leather Jacket"
+      ]
+    },
+    "Mechanics / Tech Ops": {
+      "weapons": [
+        "FEN 209 Machine Pistol",
+        "MILA Grenade Launcher"
+      ],
+      "armour": [
+        "Crackshot Armour"
+      ]
+    },
+    "Mechanic": {
+      "weapons": [
+        "FEN 209 Machine Pistol",
+        "MILA Grenade Launcher"
+      ],
+      "armour": [
+        "Crackshot Armour"
+      ]
+    },
+    "Tech Ops": {
+      "weapons": [
+        "FEN 209 Machine Pistol",
+        "MILA Grenade Launcher"
+      ],
+      "armour": [
+        "Crackshot Armour"
+      ]
+    },
+    "Pilot and Navigation": {
+      "weapons": [
+        "FEN Reaper LMG",
+        "FEN 603 Auto-Pistol"
+      ],
+      "armour": [
+        "Shiver Flak Vest"
+      ]
+    },
+    "Pilot": {
+      "weapons": [
+        "FEN Reaper LMG",
+        "FEN 603 Auto-Pistol"
+      ],
+      "armour": [
+        "Shiver Flak Vest"
+      ]
+    },
+    "Ebb Operative": {
+      "weapons": [
+        "FEN 401 Shiver Pistol",
+        "Standard Combat Knife"
+      ],
+      "armour": [
+        "Ebb Deathsuit (Ebon / Brain Waster)"
+      ]
+    }
+  }
+}

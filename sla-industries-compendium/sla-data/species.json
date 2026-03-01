@@ -1,0 +1,221 @@
+{
+  "version": "0.3.0-draft3",
+  "source": "SLA_BRP.txt",
+  "species": [
+    {
+      "name": "Human",
+      "startingScl": 10,
+      "starterPackage": "Strike Squad",
+      "characteristics": {
+        "str": "3D6",
+        "con": "3D6",
+        "siz": "2D6+6",
+        "int": "2D6+6",
+        "pow": "3D6",
+        "dex": "3D6",
+        "cha": "3D6"
+      },
+      "choiceBonuses": [
+        { "count": 3, "bonus": 10 }
+      ],
+      "notes": [
+        "Flexible generalists.",
+        "+10% to any three different skills (player choice)."
+      ]
+    },
+    {
+      "name": "Frother",
+      "startingScl": 10,
+      "starterPackage": "Kick Murder",
+      "characteristics": {
+        "str": "2D6+6",
+        "con": "2D6+6",
+        "siz": "2D6+6",
+        "int": "2D6+4",
+        "pow": "3D6",
+        "dex": "3D6",
+        "cha": "3D6"
+      },
+      "skillBonuses": [
+        { "skillRef": "Melee Blade 2H", "bonus": 20 },
+        { "skillRef": "Brawl", "bonus": 20 },
+        { "skillRef": "Athletics", "bonus": 20 },
+        { "skillRef": "Intimidate", "bonus": 10 }
+      ],
+      "notes": [
+        "Drug-soaked clan warriors.",
+        "Optional rule: ignore first -10% fatigue/wound penalty."
+      ]
+    },
+    {
+      "name": "Ebon",
+      "startingScl": 10,
+      "starterPackage": "Ebb Operative",
+      "characteristics": {
+        "str": "2D6+2",
+        "con": "3D6",
+        "siz": "2D6+4",
+        "int": "2D6+6",
+        "pow": "2D6+8",
+        "dex": "3D6",
+        "cha": "2D6+5"
+      },
+      "skillBonuses": [
+        { "skillRef": "Biofeedback", "bonus": 20 },
+        { "skillRef": "Formulate", "bonus": 20 },
+        { "skillRef": "Medical", "bonus": 10 },
+        { "skillRef": "Psychology", "bonus": 10 }
+      ],
+      "notes": [
+        "Ebb specialists with disciplined focus.",
+        "Starting Flux = POW."
+      ]
+    },
+    {
+      "name": "Brain Waster",
+      "startingScl": 10,
+      "starterPackage": "Ebb Operative",
+      "characteristics": {
+        "str": "2D6+4",
+        "con": "2D6+4",
+        "siz": "2D6+5",
+        "int": "2D6+6",
+        "pow": "2D6+6",
+        "dex": "3D6",
+        "cha": "2D6+2"
+      },
+      "skillBonuses": [
+        { "skillRef": "Formulate", "bonus": 20 },
+        { "skillRef": "Biofeedback", "bonus": 10 },
+        { "skillRef": "Intimidate", "bonus": 10 },
+        { "skillRef": "Firearm (Rifle/Shotgun)", "bonus": 10 }
+      ],
+      "notes": [
+        "Weaponised Ebb users.",
+        "Starting Flux = POW."
+      ]
+    },
+    {
+      "name": "Wraith Raider",
+      "startingScl": 10,
+      "starterPackage": "Scouting",
+      "characteristics": {
+        "str": "3D6",
+        "con": "3D6",
+        "siz": "2D6+4",
+        "int": "2D6+6",
+        "pow": "2D6+3",
+        "dex": "2D6+8",
+        "cha": "3D6"
+      },
+      "skillBonuses": [
+        { "skillRef": "Athletics", "bonus": 20 },
+        { "skillRef": "Dodge", "bonus": 20 },
+        { "skillRef": "Spot Hidden", "bonus": 20 },
+        { "skillRef": "Firearm (Rifle/Shotgun)", "bonus": 10 }
+      ],
+      "notes": [
+        "Fast, agile, predatory hunters.",
+        "Natural claws available."
+      ]
+    },
+    {
+      "name": "Shaktar",
+      "startingScl": 10,
+      "starterPackage": "Death Squad",
+      "characteristics": {
+        "str": "2D6+6",
+        "con": "2D6+6",
+        "siz": "2D6+6",
+        "int": "2D6+4",
+        "pow": "2D6+4",
+        "dex": "2D6+6",
+        "cha": "2D6+3"
+      },
+      "skillBonuses": [
+        { "skillRef": "Melee Blade 2H", "bonus": 20 },
+        { "skillRef": "Tactics", "bonus": 20 },
+        { "skillRef": "Command", "bonus": 10 },
+        { "skillRef": "SLA Info", "bonus": 10 }
+      ],
+      "notes": [
+        "Honour-bound reptilian warriors.",
+        "Code of honour applies."
+      ]
+    },
+    {
+      "name": "Stormer 313 Malice",
+      "startingScl": 10,
+      "starterPackage": "Death Squad",
+      "characteristics": {
+        "str": "2D6+10",
+        "con": "2D6+10",
+        "siz": "2D6+10",
+        "int": "2D6+2",
+        "pow": "2D6+2",
+        "dex": "2D6+6",
+        "cha": "2D6+1"
+      },
+      "skillBonuses": [
+        { "skillRef": "Brawl", "bonus": 20 },
+        { "skillRef": "Melee Axe", "bonus": 20 },
+        { "skillRef": "Firearm (Auto/Support)", "bonus": 20 },
+        { "skillRef": "Persuade", "bonus": -10 },
+        { "skillRef": "Fast Talk", "bonus": -10 }
+      ],
+      "notes": [
+        "Brutal front-line biogen soldier.",
+        "Natural armour and regeneration profile."
+      ]
+    },
+    {
+      "name": "Stormer 711 Xeno",
+      "startingScl": 10,
+      "starterPackage": "Scouting",
+      "characteristics": {
+        "str": "2D6+6",
+        "con": "2D6+6",
+        "siz": "2D6+4",
+        "int": "2D6+4",
+        "pow": "2D6+3",
+        "dex": "2D6+8",
+        "cha": "2D6+1"
+      },
+      "skillBonuses": [
+        { "skillRef": "Athletics", "bonus": 20 },
+        { "skillRef": "Dodge", "bonus": 20 },
+        { "skillRef": "Firearm (SMG)", "bonus": 20 },
+        { "skillRef": "Streetwise", "bonus": 10 }
+      ],
+      "notes": [
+        "Stealth-oriented biogen hunter.",
+        "Natural armour and regeneration profile."
+      ]
+    },
+    {
+      "name": "Advanced Carrien",
+      "startingScl": 10,
+      "starterPackage": "Tech Ops",
+      "characteristics": {
+        "str": "2D6+6",
+        "con": "2D6+6",
+        "siz": "2D6+4",
+        "int": "2D6+6",
+        "pow": "2D6+3",
+        "dex": "3D6",
+        "cha": "2D6+2"
+      },
+      "skillBonuses": [
+        { "skillRef": "Brawl", "bonus": 20 },
+        { "skillRef": "Melee Axe", "bonus": 20 },
+        { "skillRef": "Streetwise", "bonus": 20 },
+        { "skillRef": "Persuade", "bonus": -10 },
+        { "skillRef": "Command", "bonus": -10 }
+      ],
+      "notes": [
+        "Savage and cunning mutants.",
+        "Social prejudice applies in many districts."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "id": "sla-industries-compendium",
+  "title": "SLA Industries Compendium (Draft)",
+  "version": "1.1.0",
+  "coreVersion": "13.351",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Dangermouse",
+      "flags": {}
+    },
+    {
+      "name": "Crys",
+      "flags": {}
+    }
+  ],
+  "packs": [
+    {
+      "name": "allegiances",
+      "label": "Allegiances",
+      "path": "packs/allegiances",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "armour",
+      "label": "Armour",
+      "path": "packs/armour",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "character-failings",
+      "label": "Character Failings",
+      "path": "packs/character-failings",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "combat-tables",
+      "label": "Combat Tables",
+      "path": "packs/combat-tables",
+      "type": "RollTable",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "creatures",
+      "label": "Creatures",
+      "path": "packs/creatures",
+      "type": "Actor",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "creature-tables",
+      "label": "Creature Tables",
+      "path": "packs/creature-tables",
+      "type": "RollTable",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "hit-locations",
+      "label": "Hit-Locations",
+      "path": "packs/hit-locations",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "magic-spells",
+      "label": "Magic Spells",
+      "path": "packs/magic-spells",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "mutations",
+      "label": "Mutations",
+      "path": "packs/mutations",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "passions",
+      "label": "Passions",
+      "path": "packs/passions",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "personalities",
+      "label": "Personalities",
+      "path": "packs/personalities",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "powers",
+      "label": "Powers",
+      "path": "packs/powers",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "professions",
+      "label": "Professions",
+      "path": "packs/professions",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "psychic-abilities",
+      "label": "Psychic Abilities",
+      "path": "packs/psychic-abilities",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "reputations",
+      "label": "Reputations",
+      "path": "packs/reputations",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "skill-categories",
+      "label": "Skill Categories",
+      "path": "packs/skill-categories",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "skills",
+      "label": "Skills",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "sorcery-spells",
+      "label": "Sorcery Spells",
+      "path": "packs/sorcery-spells",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "superpower-modifiers",
+      "label": "Superpower Modifiers",
+      "path": "packs/superpower-modifiers",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "superpowers",
+      "label": "Superpowers",
+      "path": "packs/superpowers",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "traits",
+      "label": "Traits",
+      "path": "packs/traits",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "utilities",
+      "label": "Utilities",
+      "path": "packs/utilities",
+      "type": "Macro",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "sla-industries-brp",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "rollable-tables",
+      "label": "Rollable Tables",
+      "path": "packs/rollable-tables",
+      "type": "RollTable",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "sla-industries-brp"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "sla-industries-brp",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "description": "Draft SLA Industries compendium module targeting the SLA Industries BRP system for Foundry VTT.",
+  "url": "https://github.com/slaguru666/sla_industries_brp",
+  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-compendium/module.json",
+  "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-industries-compendium.zip",
+  "license": "LICENSE"
+}

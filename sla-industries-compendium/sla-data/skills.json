@@ -1,0 +1,64 @@
+{
+  "version": "0.4.0-ebb-core",
+  "source": "SLA_BRP.txt",
+  "skills": [
+    { "name": "SLA Info", "base": 10, "categoryRef": "Mental" },
+
+    { "name": "Drive (Civilian)", "base": 20, "categoryRef": "Technical" },
+    { "name": "Drive (Military)", "base": 10, "categoryRef": "Technical" },
+    { "name": "Pilot", "base": 5, "categoryRef": "Technical" },
+
+    { "name": "Tech (Computers & AI)", "base": 10, "categoryRef": "Technical" },
+    { "name": "Tech (Electronics)", "base": 10, "categoryRef": "Technical" },
+    { "name": "Tech (Mechanical)", "base": 10, "categoryRef": "Technical" },
+    { "name": "Tech (Military)", "base": 5, "categoryRef": "Technical" },
+
+    { "name": "Bureaucracy", "base": 10, "categoryRef": "Mental" },
+    { "name": "Medical", "base": 10, "categoryRef": "Mental" },
+    { "name": "Psychology", "base": 10, "categoryRef": "Mental" },
+    { "name": "Tactics", "base": 10, "categoryRef": "Mental" },
+    { "name": "Computer Systems", "base": 10, "categoryRef": "Technical" },
+
+    { "name": "Persuade", "base": 15, "categoryRef": "Communication" },
+    { "name": "Fast Talk", "base": 10, "categoryRef": "Communication" },
+    { "name": "Intimidate", "base": 15, "categoryRef": "Communication" },
+    { "name": "Streetwise", "base": 10, "categoryRef": "Communication" },
+    { "name": "Command", "base": 15, "categoryRef": "Communication" },
+    { "name": "Craft (Specialty)", "base": 10, "categoryRef": "Mental" },
+
+    { "name": "Spot Hidden", "base": 25, "categoryRef": "Perception" },
+    { "name": "Listen", "base": 25, "categoryRef": "Perception" },
+
+    { "name": "Athletics", "base": 15, "categoryRef": "Physical" },
+    { "name": "Climb", "base": 20, "categoryRef": "Physical" },
+    { "name": "Swim", "base": 20, "categoryRef": "Physical" },
+    { "name": "Dodge", "base": 15, "categoryRef": "Physical" },
+    { "name": "Stealth", "base": 10, "categoryRef": "Physical" },
+
+    { "name": "Brawl", "base": 25, "categoryRef": "Combat", "combat": true },
+    { "name": "Melee Blade 1H", "base": 20, "categoryRef": "Combat", "combat": true },
+    { "name": "Melee Blade 2H", "base": 10, "categoryRef": "Combat", "combat": true },
+    { "name": "Melee Club", "base": 20, "categoryRef": "Combat", "combat": true },
+    { "name": "Melee Axe", "base": 15, "categoryRef": "Combat", "combat": true },
+    { "name": "Throw", "base": 20, "categoryRef": "Combat", "combat": true },
+    { "name": "Firearm (Pistol)", "base": 20, "categoryRef": "Combat", "combat": true },
+    { "name": "Firearm (Rifle/Shotgun)", "base": 25, "categoryRef": "Combat", "combat": true },
+    { "name": "Firearm (SMG)", "base": 15, "categoryRef": "Combat", "combat": true },
+    { "name": "Firearm (Auto/Support)", "base": 10, "categoryRef": "Combat", "combat": true },
+
+    { "name": "Biofeedback", "base": 5, "categoryRef": "Mental" },
+    { "name": "Formulate", "base": 5, "categoryRef": "Mental" },
+
+    { "name": "Ebb (Core)", "base": 10, "categoryRef": "Mental" },
+    { "name": "Ebb Awareness", "base": 5, "categoryRef": "Perception" },
+    { "name": "Ebb Blast", "base": 5, "categoryRef": "Combat", "combat": true },
+    { "name": "Ebb Thermal (Red)", "base": 5, "categoryRef": "Combat", "combat": true },
+    { "name": "Ebb Thermal (Blue)", "base": 5, "categoryRef": "Combat", "combat": true },
+    { "name": "Ebb Telekinesis", "base": 5, "categoryRef": "Mental" },
+    { "name": "Ebb Communicate", "base": 5, "categoryRef": "Mental" },
+    { "name": "Ebb Senses", "base": 5, "categoryRef": "Perception" },
+    { "name": "Ebb Protect", "base": 5, "categoryRef": "Mental" },
+    { "name": "Ebb Heal", "base": 5, "categoryRef": "Mental" },
+    { "name": "Ebb Reality Fold", "base": 5, "categoryRef": "Mental" }
+  ]
+}

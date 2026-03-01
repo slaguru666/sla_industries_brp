@@ -1,0 +1,452 @@
+{
+  "version": "0.4.0-ebb-core",
+  "source": "SLA_BRP.txt",
+  "abilities": [
+    {
+      "id": "awareness",
+      "name": "Awareness",
+      "skillRef": "Ebb Awareness",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "other",
+      "attack": false,
+      "range": "POW x 5m",
+      "rangeFormula": "pow*5",
+      "duration": "1 minute",
+      "pppl": "1",
+      "effect": "Sense active Ebb, flux fields, and Ebb users.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "range": "POW x 5m",
+          "duration": "1 minute",
+          "effect": "Detect active Ebb, flux batteries, and Ebb users."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "range": "POW x 10m",
+          "duration": "2 minutes",
+          "effect": "Greater radius and rough source strength."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "range": "POW x 20m",
+          "duration": "3 minutes",
+          "effect": "Strong source mapping and directional lock."
+        }
+      ],
+      "notes": [
+        "Special success gives stronger directional detail.",
+        "Used for scanning unknown spaces before contact."
+      ]
+    },
+    {
+      "id": "blast",
+      "name": "Blast",
+      "skillRef": "Ebb Blast",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Combat",
+      "impact": "harm",
+      "attack": true,
+      "range": "POW x 2m",
+      "rangeFormula": "pow*2",
+      "duration": "Instant",
+      "pppl": "1",
+      "effect": "Kinetic Ebb bolt.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "damage": "1D6",
+          "ignoreArmour": 2,
+          "effect": "Kinetic bolt, ignores 2 armour."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "damage": "2D6",
+          "ignoreArmour": 4,
+          "effect": "Heavy bolt, ignores 4 armour."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "damage": "3D6",
+          "ignoreArmour": 6,
+          "effect": "Violent blast, ignores 6 armour."
+        }
+      ],
+      "special": {
+        "specialDoubleDice": true,
+        "criticalMode": "max-ignore-armour"
+      },
+      "notes": [
+        "Single roll resolves both control and hit.",
+        "Critical: max dice and ignore all armour."
+      ]
+    },
+    {
+      "id": "thermal-red",
+      "name": "Thermal (Red)",
+      "skillRef": "Ebb Thermal (Red)",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Combat",
+      "impact": "harm",
+      "attack": true,
+      "range": "POW x 2m",
+      "rangeFormula": "pow*2",
+      "duration": "Instant",
+      "pppl": "1",
+      "effect": "Heat and fire projection.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "damage": "1D6",
+          "ignoreArmour": 2,
+          "effect": "Heat lance; flammable targets may ignite."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "damage": "2D6",
+          "ignoreArmour": 4,
+          "effect": "Intense thermal burst."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "damage": "3D6",
+          "ignoreArmour": 6,
+          "effect": "Severe thermal strike."
+        }
+      ],
+      "notes": [
+        "Targets in flammable gear may ignite on failed Agility.",
+        "Treat as offensive Ebb attack."
+      ]
+    },
+    {
+      "id": "thermal-blue",
+      "name": "Thermal (Blue)",
+      "skillRef": "Ebb Thermal (Blue)",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Combat",
+      "impact": "harm",
+      "attack": true,
+      "range": "POW x 2m",
+      "rangeFormula": "pow*2",
+      "duration": "Instant",
+      "pppl": "1",
+      "effect": "Cold and frost projection.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "damage": "1D6",
+          "effect": "Cryo strike."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "damage": "2D6",
+          "effect": "Heavy cryo strike."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "damage": "3D6",
+          "effect": "Severe freezing strike."
+        }
+      ],
+      "special": {
+        "specialCondition": "slow"
+      },
+      "notes": [
+        "Special success can halve MOVE and apply -20% Physical for 1D3 rounds.",
+        "Normal armour applies."
+      ]
+    },
+    {
+      "id": "telekinesis",
+      "name": "Telekinesis",
+      "skillRef": "Ebb Telekinesis",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "other",
+      "attack": false,
+      "range": "POW x 2m",
+      "rangeFormula": "pow*2",
+      "duration": "Sustained",
+      "pppl": "1",
+      "effect": "Move, hold, and throw objects with Ebb force.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "duration": "1 round/maintain",
+          "effect": "STR 5 equivalent force."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "duration": "1 round/maintain",
+          "effect": "STR 15 equivalent force."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "duration": "1 round/maintain",
+          "effect": "STR 25 equivalent force."
+        }
+      ],
+      "notes": [
+        "1 Flux per round to maintain sustained control.",
+        "Thrown objects deal damage by mass and velocity."
+      ]
+    },
+    {
+      "id": "communicate",
+      "name": "Communicate",
+      "skillRef": "Ebb Communicate",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "other",
+      "attack": false,
+      "range": "POW x 100m",
+      "rangeFormula": "pow*100",
+      "duration": "1 minute",
+      "pppl": "1",
+      "effect": "Telepathic communication.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "effect": "One-to-one telepathy with familiar mind."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "effect": "Share images/emotional overlays."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "effect": "No language barrier for simple intent."
+        }
+      ],
+      "notes": [
+        "Special can include strong visual packets.",
+        "Critical can bypass language mismatch."
+      ]
+    },
+    {
+      "id": "senses",
+      "name": "Senses",
+      "skillRef": "Ebb Senses",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Perception",
+      "impact": "other",
+      "attack": false,
+      "range": "Self",
+      "duration": "POW rounds",
+      "pppl": "1",
+      "effect": "Enhance sensory throughput and remote perception.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "duration": "POW rounds",
+          "rollMods": {
+            "perception": 20
+          },
+          "effect": "+20% Spot Hidden/Listen style checks."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "duration": "POW rounds",
+          "rollMods": {
+            "perception": 30
+          },
+          "effect": "+30% perception and doubled spotting distances."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "duration": "POW rounds",
+          "rollMods": {
+            "perception": 40
+          },
+          "effect": "+40% perception and remote-view snapshots."
+        }
+      ],
+      "notes": [
+        "Special can briefly remote-view known nearby locations.",
+        "Applies as roll modifier while active."
+      ]
+    },
+    {
+      "id": "protect",
+      "name": "Protect",
+      "skillRef": "Ebb Protect",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "other",
+      "attack": false,
+      "range": "Touch",
+      "duration": "POW rounds",
+      "pppl": "1",
+      "effect": "Temporary Ebb shielding.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 1,
+          "duration": "POW rounds",
+          "avBonus": 2,
+          "protectType": "physical",
+          "effect": "+2 AV vs chosen damage family."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 3,
+          "duration": "POW rounds",
+          "avBonus": 4,
+          "protectType": "physical",
+          "effect": "+4 AV vs chosen damage family."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 5,
+          "duration": "POW rounds",
+          "avBonus": 6,
+          "protectType": "physical",
+          "effect": "+6 AV vs chosen damage family."
+        }
+      ],
+      "special": {
+        "criticalMode": "dual-protect"
+      },
+      "notes": [
+        "On critical, protection applies to both physical and Ebb attack types."
+      ]
+    },
+    {
+      "id": "heal",
+      "name": "Heal",
+      "skillRef": "Ebb Heal",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "heal",
+      "attack": false,
+      "range": "Touch",
+      "duration": "Instant",
+      "pppl": "2",
+      "effect": "Restore HP or stabilize severe wounds.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 2,
+          "healing": "1D6",
+          "effect": "Restore 1D6 HP."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 4,
+          "healing": "2D6",
+          "effect": "Restore 2D6 HP or stabilize fatal injury to major wound."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 6,
+          "healing": "3D6",
+          "effect": "High-output recovery burst."
+        }
+      ],
+      "notes": [
+        "On fumble, target takes 1D4 damage from Ebb trauma."
+      ]
+    },
+    {
+      "id": "reality-fold",
+      "name": "Reality Fold",
+      "skillRef": "Ebb Reality Fold",
+      "coreSkillRef": "Ebb (Core)",
+      "base": 0,
+      "skillCategoryRef": "Mental",
+      "impact": "other",
+      "attack": false,
+      "range": "POW x 3m",
+      "rangeFormula": "pow*3",
+      "duration": "Instant",
+      "pppl": "5",
+      "effect": "Short-range spatial fold / teleport.",
+      "tiers": [
+        {
+          "id": "basic",
+          "label": "Basic",
+          "cost": 5,
+          "range": "POW x 3m",
+          "effect": "Teleport self plus gear, line of sight."
+        },
+        {
+          "id": "strong",
+          "label": "Strong",
+          "cost": 7,
+          "range": "POW x 4m",
+          "effect": "Longer fold and improved control."
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "cost": 9,
+          "range": "POW x 5m",
+          "effect": "Aggressive fold envelope, can include adjacent ally."
+        }
+      ],
+      "notes": [
+        "Difficult if destination is unfamiliar or occluded.",
+        "On fumble, arrive off target and take 1D6 spatial shear damage."
+      ]
+    }
+  ]
+}

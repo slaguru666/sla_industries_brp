@@ -1,0 +1,188 @@
+{
+  "version": "0.5.0-skill-pools",
+  "source": "SLA_BRP.txt",
+  "startingCredits": 1500,
+  "professionalSkillPool": 300,
+  "generalSkillPool": 120,
+  "professionalSkillMax": 45,
+  "generalSkillMax": 25,
+  "creationSkillCap": 75,
+  "packages": [
+    {
+      "name": "Death Squad",
+      "wealth": "Average",
+      "skills": [
+        "Firearm (Rifle/Shotgun)",
+        "Firearm (SMG)",
+        "Firearm (Auto/Support)",
+        "Brawl",
+        "Dodge",
+        "Athletics",
+        "Intimidate",
+        "Tactics",
+        "Spot Hidden",
+        "Tech (Military)"
+      ]
+    },
+    {
+      "name": "Strike Squad",
+      "wealth": "Average",
+      "skills": [
+        "Firearm (Rifle/Shotgun)",
+        "Firearm (Pistol)",
+        "Dodge",
+        "Athletics",
+        "Climb",
+        "Tactics",
+        "Command",
+        "Spot Hidden",
+        "Drive (Military)",
+        "Tech (Military)"
+      ]
+    },
+    {
+      "name": "Kick Murder",
+      "wealth": "Average",
+      "skills": [
+        "Brawl",
+        "Melee Blade 1H",
+        "Melee Blade 2H",
+        "Melee Axe",
+        "Melee Club",
+        "Throw",
+        "Athletics",
+        "Dodge",
+        "Intimidate",
+        "Spot Hidden"
+      ]
+    },
+    {
+      "name": "Scouting",
+      "wealth": "Average",
+      "skills": [
+        "Firearm (Rifle/Shotgun)",
+        "Climb",
+        "Athletics",
+        "Dodge",
+        "Spot Hidden",
+        "Listen",
+        "Drive (Military)",
+        "Tactics",
+        "Streetwise",
+        "Pilot"
+      ]
+    },
+    {
+      "name": "Investigation",
+      "wealth": "Average",
+      "skills": [
+        "Spot Hidden",
+        "Listen",
+        "Psychology",
+        "Bureaucracy",
+        "Persuade",
+        "Fast Talk",
+        "Streetwise",
+        "Computer Systems",
+        "SLA Info",
+        "Craft (Specialty)"
+      ]
+    },
+    {
+      "name": "Media",
+      "wealth": "Average to Affluent",
+      "skills": [
+        "Fast Talk",
+        "Persuade",
+        "Psychology",
+        "Streetwise",
+        "Command",
+        "Bureaucracy",
+        "SLA Info",
+        "Computer Systems",
+        "Craft (Specialty)",
+        "Drive (Civilian)"
+      ]
+    },
+    {
+      "name": "Medical",
+      "wealth": "Average",
+      "skills": [
+        "Medical",
+        "Psychology",
+        "Athletics",
+        "Dodge",
+        "Computer Systems",
+        "Bureaucracy",
+        "Spot Hidden",
+        "Drive (Civilian)",
+        "Tech (Electronics)",
+        "Craft (Specialty)"
+      ]
+    },
+    {
+      "name": "Mechanic",
+      "wealth": "Average",
+      "skills": [
+        "Tech (Mechanical)",
+        "Tech (Electronics)",
+        "Tech (Computers & AI)",
+        "Craft (Specialty)",
+        "Drive (Civilian)",
+        "Drive (Military)",
+        "Athletics",
+        "Bureaucracy",
+        "Computer Systems",
+        "Spot Hidden"
+      ]
+    },
+    {
+      "name": "Tech Ops",
+      "wealth": "Average",
+      "skills": [
+        "Tech (Computers & AI)",
+        "Tech (Electronics)",
+        "Tech (Military)",
+        "Computer Systems",
+        "Bureaucracy",
+        "Psychology",
+        "SLA Info",
+        "Spot Hidden",
+        "Drive (Civilian)",
+        "Tactics"
+      ]
+    },
+    {
+      "name": "Pilot",
+      "wealth": "Average",
+      "skills": [
+        "Pilot",
+        "Drive (Military)",
+        "Drive (Civilian)",
+        "Spot Hidden",
+        "Listen",
+        "Tactics",
+        "Computer Systems",
+        "Athletics",
+        "Dodge",
+        "Tech (Mechanical)"
+      ]
+    },
+    {
+      "name": "Ebb Operative",
+      "wealth": "Average",
+      "skills": [
+        "Psychology",
+        "SLA Info",
+        "Spot Hidden",
+        "Listen",
+        "Bureaucracy",
+        "Persuade",
+        "Computer Systems",
+        "Dodge",
+        "Medical",
+        "Craft (Specialty)"
+      ]
+    }
+  ]
+}

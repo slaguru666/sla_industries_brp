@@ -17,6 +17,7 @@ jobs:
           mkdir -p dist
           zip -r dist/sla-brp.zip sla-brp -x "*.DS_Store"
           zip -r dist/sla-industries-brp.zip sla-industries-brp -x "*.DS_Store"
+          zip -r dist/sla-industries-compendium.zip sla-industries-compendium -x "*.DS_Store"
 
       - name: Upload to release
         if: github.event_name == 'release'
@@ -25,3 +26,4 @@ jobs:
           files: |
             dist/sla-brp.zip
             dist/sla-industries-brp.zip
+            dist/sla-industries-compendium.zip
