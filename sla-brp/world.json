@@ -2,18 +2,20 @@
   "id": "sla-brp",
   "title": "SLA BRP",
   "description": "A prebuilt SLA BRP world for Foundry Virtual Tabletop.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     {
       "name": "timevans"
     }
   ],
+  "coreVersion": "13.351",
   "compatibility": {
     "minimum": "13",
     "verified": "13.351",
     "maximum": "13"
   },
   "system": "sla-industries-brp",
+  "systemVersion": "13.1.52",
   "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json",
   "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-brp.zip",
   "url": "https://github.com/slaguru666/sla_industries_brp"
