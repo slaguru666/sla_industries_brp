@@ -755,6 +755,10 @@ export class BRPActor extends Actor {
       delete data.ownership
       delete data.pack
       data.system = data.system ?? {}
+      if (!BRPactorItemDrop._isSkillCategoryBrpid?.(data.system.category)) {
+        const fallbackCategory = await BRPactorItemDrop._getFallbackSkillCategoryBrpid?.(actor)
+        if (fallbackCategory) data.system.category = fallbackCategory
+      }
 
       // Normalize specialty placeholders (e.g. Craft (Specialty)) even if source flags are missing.
       if (!data.system.specialism && /\(\s*specialty\s*\)/i.test(skillName)) {

@@ -5446,11 +5446,33 @@ export class SLABPNToolkit {
       const runAction = async (action = "close") => {
         switch (String(action)) {
           case "full-install":
-            return game.brp?.SLASeedImporter?.runFullSLAInstaller?.({
-              overwrite: true,
-              pruneCompendia: true,
-              notify: true
-            }) ?? { ok: false, reason: "full-installer-unavailable" };
+            if (typeof game.brp?.SLASeedImporter?.runFullSLAInstaller === "function") {
+              return game.brp.SLASeedImporter.runFullSLAInstaller({
+                overwrite: true,
+                pruneCompendia: true,
+                notify: true
+              });
+            }
+            // Backward-compatible fallback for clients still on older cached scripts.
+            if (!game.brp?.SLASeedImporter) {
+              return { ok: false, reason: "full-installer-unavailable" };
+            }
+            await this.ensureCoreJournals({ notify: false });
+            const fallbackSummary = {
+              ok: true,
+              mode: "compat-fallback",
+              base: await game.brp.SLASeedImporter.buildDraft2?.({ overwrite: true, syncCompendia: false }),
+              traits: await game.brp.SLASeedImporter.ensureSLA2Traits?.({ overwrite: true, notify: false }),
+              equipment: await this.seedWorldGeneralEquipment({ overwrite: true, notify: false }),
+              sync: await game.brp.SLASeedImporter.syncAllToCompendia?.({ overwrite: true, prune: true }),
+              migrate: await game.brp.SLASeedImporter.migrateLegacySLAAssetPaths?.({
+                includeActors: true,
+                includeCompendium: true,
+                notify: false
+              })
+            };
+            ui.notifications.info("SLA Full Install complete (compat mode).");
+            return fallbackSummary;
           case "setup":
             return this.ensureCoreJournals({ notify: true });
           case "rulebook":

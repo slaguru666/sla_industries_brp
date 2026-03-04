@@ -7,6 +7,38 @@ import { SLASkillPoints } from "../apps/sla-skill-points.mjs";
 
 export class BRPactorItemDrop {
 
+  static _isSkillCategoryBrpid(brpid = "") {
+    return /^i\.skillcat\./i.test(String(brpid ?? "").trim());
+  }
+
+  static async _getFallbackSkillCategoryBrpid(actor) {
+    const actorSkillCat = actor?.items
+      ?.filter((itm) => itm.type === "skillcat")
+      ?.map((itm) => itm.flags?.[game.system.id]?.brpidFlag?.id ?? itm.flags?.brp?.brpidFlag?.id)
+      ?.find((id) => this._isSkillCategoryBrpid(id));
+    if (actorSkillCat) return String(actorSkillCat);
+
+    try {
+      const cats = await game.system.api.brpid.fromBRPIDRegexBest({
+        brpidRegExp: /^i\.skillcat\./,
+        type: "i"
+      });
+      const preferred = ["mental", "physical", "combat", "perception", "communication", "technical"];
+      for (const needle of preferred) {
+        const match = cats.find((itm) => String(itm?.name ?? "").toLowerCase().includes(needle));
+        const brpid = match?.flags?.[game.system.id]?.brpidFlag?.id ?? match?.flags?.brp?.brpidFlag?.id;
+        if (this._isSkillCategoryBrpid(brpid)) return String(brpid);
+      }
+      for (const cat of cats) {
+        const brpid = cat?.flags?.[game.system.id]?.brpidFlag?.id ?? cat?.flags?.brp?.brpidFlag?.id;
+        if (this._isSkillCategoryBrpid(brpid)) return String(brpid);
+      }
+    } catch (err) {
+      console.warn("sla-industries-brp | Could not resolve fallback skill category BRPID", err);
+    }
+    return "";
+  }
+
   // Change default on Drop Item Create routine for requirements (single items and folder drop)-----------------------------------------------------------------
   static async _BRPonDropItemCreate(actor, itemData) {
     const newItemData = [];
@@ -245,7 +277,15 @@ export class BRPactorItemDrop {
   //Calculate Base Skill on Dropping the item on actor
   static async _calcBase(itm, actor) {
     //Check the skill Category exists
-    await this._checkSkillCat(itm, actor)
+    try {
+      await this._checkSkillCat(itm, actor)
+    } catch (err) {
+      console.warn("sla-industries-brp | Skill category check failed during base calc", {
+        skill: itm?.name,
+        category: itm?.system?.category,
+        err
+      })
+    }
     if (itm.system.variable) {
       let stat1 = itm.system.baseFormula[1].stat
       let stat2 = itm.system.baseFormula[2].stat
@@ -742,20 +782,40 @@ export class BRPactorItemDrop {
   }
 
   static async _checkSkillCat(skill, actor) {
+    if (!skill || skill.type !== "skill") return
+
+    let categoryBrpid = String(skill?.system?.category ?? "").trim()
+    if (!this._isSkillCategoryBrpid(categoryBrpid)) {
+      categoryBrpid = await this._getFallbackSkillCategoryBrpid(actor)
+      if (categoryBrpid && skill?.system) {
+        skill.system.category = categoryBrpid
+      }
+    }
+    if (!this._isSkillCategoryBrpid(categoryBrpid)) return
+
     //Check to see if the skill category already exists and if it does then do nothing
     let newSkillCats = []
     if (actor.items
       .filter(dItm => (dItm.flags?.[game.system.id]?.brpidFlag?.id ?? dItm.flags?.brp?.brpidFlag?.id))
-      .filter(nitm => (nitm.flags?.[game.system.id]?.brpidFlag?.id ?? nitm.flags?.brp?.brpidFlag?.id) === skill.system.category).length > 0) {
+      .filter(nitm => (nitm.flags?.[game.system.id]?.brpidFlag?.id ?? nitm.flags?.brp?.brpidFlag?.id) === categoryBrpid).length > 0) {
       return
     }
     //Get the best version of the skill category
-    let newSkillCat = (await game.system.api.brpid.fromBRPIDBest({ brpid: skill.system.category }))[0]
+    let newSkillCat = null
+    try {
+      newSkillCat = (await game.system.api.brpid.fromBRPIDBest({ brpid: categoryBrpid }))[0]
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed resolving skill category by BRPID", {
+        skill: skill?.name,
+        categoryBrpid,
+        err
+      })
+    }
     if (newSkillCat) {
       newSkillCats.push(newSkillCat)
       await Item.createDocuments(newSkillCats, { parent: actor })
     } else {
-      let errMsg = game.i18n.format('BRP.noSkillCat', { skillCat: skill.system.category, skillName: skill.name })
+      let errMsg = game.i18n.format('BRP.noSkillCat', { skillCat: categoryBrpid, skillName: skill.name })
       ui.notifications.warn(errMsg);
     }
     return
