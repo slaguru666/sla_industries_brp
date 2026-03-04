@@ -2,7 +2,7 @@
   "id": "sla-industries-brp",
   "title": "SLA Industries BRP (Draft)",
   "description": "Draft SLA Industries conversion of the BRP system for FoundryVTT.",
-  "version": "13.1.55",
+  "version": "13.1.56",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350",

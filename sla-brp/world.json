@@ -15,7 +15,7 @@
     "maximum": "13"
   },
   "system": "sla-industries-brp",
-  "systemVersion": "13.1.55",
+  "systemVersion": "13.1.56",
   "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-brp/world.json",
   "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-brp.zip",
   "url": "https://github.com/slaguru666/sla_industries_brp"

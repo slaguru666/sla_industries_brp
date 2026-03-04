@@ -171,6 +171,29 @@ Hooks.once("ready", async function () {
       console.warn("sla-industries-brp | Unable to attach SLABPNToolkit to game.brp", err);
     }
   }
+  // Bootstrap a complete SLA install once per world/system version on GM login.
+  if (game.user?.isGM && game.world && game.brp?.SLASeedImporter?.runFullSLAInstaller) {
+    try {
+      const installFlagKey = "fullInstallVersion";
+      const currentVersion = String(game.system.version ?? "");
+      const installedVersion = String(await game.world.getFlag("sla-industries-brp", installFlagKey) ?? "");
+      if (installedVersion !== currentVersion) {
+        const result = await game.brp.SLASeedImporter.runFullSLAInstaller({
+          overwrite: false,
+          pruneCompendia: false,
+          notify: false
+        });
+        if (result?.ok !== false) {
+          await game.world.setFlag("sla-industries-brp", installFlagKey, currentVersion);
+          ui.notifications.info(`SLA content bootstrap complete (${currentVersion}).`);
+        } else {
+          console.warn("sla-industries-brp | SLA content bootstrap skipped/failed", result);
+        }
+      }
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed SLA automatic full install bootstrap", err);
+    }
+  }
   if (game.user?.isGM && game.brp?.SLABPNToolkit?.ensureRulebookJournal) {
     try {
       await game.brp.SLABPNToolkit.ensureRulebookJournal({ notify: false, syncPages: true });
