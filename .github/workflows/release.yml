@@ -15,9 +15,9 @@ jobs:
       - name: Build zips
         run: |
           mkdir -p dist
-          zip -r dist/sla-brp.zip sla-brp -x "*.DS_Store"
-          zip -r dist/sla-industries-brp.zip sla-industries-brp -x "*.DS_Store"
-          zip -r dist/sla-industries-compendium.zip sla-industries-compendium -x "*.DS_Store"
+          (cd sla-brp && zip -r ../dist/sla-brp.zip . -x "*.DS_Store")
+          (cd sla-industries-brp && zip -r ../dist/sla-industries-brp.zip . -x "*.DS_Store")
+          (cd sla-industries-compendium && zip -r ../dist/sla-industries-compendium.zip . -x "*.DS_Store")
 
       - name: Upload to release
         if: github.event_name == 'release'

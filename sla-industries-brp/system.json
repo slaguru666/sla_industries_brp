@@ -83,8 +83,18 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "socket": true,
+  "relationships": {
+    "requires": [
+      {
+        "id": "sla-industries-compendium",
+        "type": "module",
+        "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-compendium/module.json",
+        "compatibility": {}
+      }
+    ]
+  },
   "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-brp/system.json",
-  "download": "https://github.com/slaguru666/sla_industries_brp/archive/refs/heads/main.zip",
+  "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-industries-brp.zip",
   "license": "LICENSE.txt",
   "changelog": "CHANGELOG.md",
   "url": "https://github.com/slaguru666/sla_industries_brp/tree/main/sla-industries-brp"
