@@ -827,23 +827,34 @@ export class BRPActor extends Actor {
     let created = 0
     let removed = 0
     const missing = new Set()
+    const failed = []
 
     for (const actor of actors) {
-      const result = await BRPActor.ensureSLASkillRoster(actor, {
-        includeEbb: SLAEbbSystem.isEbbSpecies(actor),
-        pruneEbbForNonEligible: true
-      })
-      created += Number(result?.created ?? 0)
-      removed += Number(result?.removed ?? 0)
-      for (const row of result?.missing ?? []) missing.add(String(row))
+      try {
+        const result = await BRPActor.ensureSLASkillRoster(actor, {
+          includeEbb: SLAEbbSystem.isEbbSpecies(actor),
+          pruneEbbForNonEligible: true
+        })
+        created += Number(result?.created ?? 0)
+        removed += Number(result?.removed ?? 0)
+        for (const row of result?.missing ?? []) missing.add(String(row))
+      } catch (err) {
+        failed.push(String(actor?.name ?? actor?.id ?? "unknown"))
+        console.warn("sla-industries-brp | SLA roster sync failed for actor", {
+          actor: actor?.name,
+          actorId: actor?.id,
+          err
+        })
+      }
     }
 
-    const summary = { actors: actors.length, created, removed, missing: [...missing] }
+    const summary = { actors: actors.length, created, removed, missing: [...missing], failed }
     if (notify && (created > 0 || removed > 0 || summary.missing.length > 0)) {
       const parts = []
       if (created > 0) parts.push(`${created} added`)
       if (removed > 0) parts.push(`${removed} removed`)
       if (summary.missing.length > 0) parts.push(`${summary.missing.length} unresolved refs`)
+      if (summary.failed.length > 0) parts.push(`${summary.failed.length} actor failures`)
       ui.notifications.info(`SLA skill roster sync: ${parts.join(", ")}.`)
     }
     return summary
