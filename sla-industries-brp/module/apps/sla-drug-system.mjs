@@ -1,6 +1,6 @@
 export class SLADrugSystem {
   static FLAG_KEY = "slaDrugs";
-  static DRUG_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Drugs/Generated";
+  static DRUG_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Drugs/Generated";
 
   static DRUG_DEFINITIONS = {
     shatter: {

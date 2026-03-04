@@ -394,6 +394,19 @@ Hooks.once("ready", async function () {
     }
   }
 
+  // Migrate legacy /assets/SLA_Assets paths to bundled system asset paths.
+  if (game.user?.isGM && game.brp?.SLASeedImporter?.migrateLegacySLAAssetPaths) {
+    try {
+      await game.brp.SLASeedImporter.migrateLegacySLAAssetPaths({
+        includeActors: true,
+        includeCompendium: true,
+        notify: false
+      });
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed SLA legacy asset path migration on ready", err);
+    }
+  }
+
   // Backfill skill artwork for existing world/compendium skills.
   if (game.user?.isGM && game.brp?.SLASeedImporter?.syncSkillIcons) {
     try {
@@ -430,6 +443,31 @@ Hooks.once("ready", async function () {
       }
     } catch (err) {
       console.warn("sla-industries-brp | Failed SLA weapon icon sync on ready", err);
+    }
+  }
+
+  // Backfill armour artwork for existing world/actor/compendium armour.
+  if (game.user?.isGM && game.brp?.SLASeedImporter?.syncArmourIcons) {
+    try {
+      const armourIconSync = await game.brp.SLASeedImporter.syncArmourIcons({
+        includeCompendium: true,
+        includeActors: true,
+        notify: false
+      });
+      if (
+        Number(armourIconSync?.worldUpdated ?? 0) > 0 ||
+        Number(armourIconSync?.actorUpdated ?? 0) > 0 ||
+        Number(armourIconSync?.compendiumUpdated ?? 0) > 0
+      ) {
+        ui.notifications.info(
+          `SLA armour icons synced: world ${Number(armourIconSync.worldUpdated ?? 0)}, actors ${Number(armourIconSync.actorUpdated ?? 0)}, compendium ${Number(armourIconSync.compendiumUpdated ?? 0)}.`
+        );
+      }
+      if ((armourIconSync?.unmatched ?? []).length > 0) {
+        console.warn("sla-industries-brp | Unmatched SLA armour icons", armourIconSync.unmatched);
+      }
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed SLA armour icon sync on ready", err);
     }
   }
 
@@ -480,6 +518,28 @@ Hooks.once("ready", async function () {
       }
     } catch (err) {
       console.warn("sla-industries-brp | Failed SLA species icon sync on ready", err);
+    }
+  }
+
+  // Backfill trait artwork for existing world/actor/compendium traits.
+  if (game.user?.isGM && game.brp?.SLASeedImporter?.syncTraitIcons) {
+    try {
+      const traitIconSync = await game.brp.SLASeedImporter.syncTraitIcons({
+        includeCompendium: true,
+        includeActors: true,
+        notify: false
+      });
+      if (
+        Number(traitIconSync?.worldUpdated ?? 0) > 0 ||
+        Number(traitIconSync?.actorUpdated ?? 0) > 0 ||
+        Number(traitIconSync?.compendiumUpdated ?? 0) > 0
+      ) {
+        ui.notifications.info(
+          `SLA trait icons synced: world ${Number(traitIconSync.worldUpdated ?? 0)}, actors ${Number(traitIconSync.actorUpdated ?? 0)}, compendium ${Number(traitIconSync.compendiumUpdated ?? 0)}.`
+        );
+      }
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed SLA trait icon sync on ready", err);
     }
   }
 

@@ -7,11 +7,23 @@ export class SLABPNToolkit {
       throw new Error("FilePicker implementation not available");
     }
     const cleanPath = String(path ?? "").trim();
-    const attempts = [cleanPath];
-    const modulePrefix = "modules/sla-industries-compendium/assets/SLA_Assets/";
-    const legacyPrefix = "assets/SLA_Assets/";
-    if (cleanPath.startsWith(modulePrefix)) {
-      attempts.push(`${legacyPrefix}${cleanPath.slice(modulePrefix.length)}`);
+    const attempts = [];
+    const pushAttempt = (value = "") => {
+      const v = String(value ?? "").trim().replace(/^\/+/, "");
+      if (!v || attempts.includes(v)) return;
+      attempts.push(v);
+    };
+    pushAttempt(cleanPath);
+    const marker = "/SLA_Assets/";
+    const markerIndex = cleanPath.toLowerCase().indexOf(marker.toLowerCase());
+    if (markerIndex >= 0) {
+      const suffix = cleanPath.slice(markerIndex + 1);
+      pushAttempt(`systems/sla-industries-brp/${suffix}`);
+      pushAttempt(`modules/sla-industries-compendium/${suffix}`);
+      pushAttempt(suffix);
+    } else if (cleanPath.startsWith("assets/SLA_Assets/")) {
+      pushAttempt(`systems/sla-industries-brp/${cleanPath}`);
+      pushAttempt(`modules/sla-industries-compendium/${cleanPath}`);
     }
     let lastErr = null;
     for (const attempt of attempts) {
@@ -549,7 +561,7 @@ export class SLABPNToolkit {
   static EXTENDED_DATA_JOURNAL_NAME = "BPN RANDOM DATA – EXTENDED";
   static COMPLETE_JOURNAL_NAME = "BPN TOOLKIT – COMPLETE";
   static EQUIPMENT_JOURNAL_NAME = "SLA GENERAL EQUIPMENT CATALOGUE";
-  static GEAR_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Gear";
+  static GEAR_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Gear";
   static _GEAR_ICON_MAP = null;
   static RULEBOOK_JOURNAL_NAME = "SLA RULEBOOK – PLAYERS & GMS";
   static RULEBOOK_SOURCE_PATH = "systems/sla-industries-brp/SLA_RULEBOOK_FOUNDATION.md";
@@ -5433,6 +5445,12 @@ export class SLABPNToolkit {
 
       const runAction = async (action = "close") => {
         switch (String(action)) {
+          case "full-install":
+            return game.brp?.SLASeedImporter?.runFullSLAInstaller?.({
+              overwrite: true,
+              pruneCompendia: true,
+              notify: true
+            }) ?? { ok: false, reason: "full-installer-unavailable" };
           case "setup":
             return this.ensureCoreJournals({ notify: true });
           case "rulebook":
@@ -5471,6 +5489,7 @@ export class SLABPNToolkit {
       };
 
       const actionRows = [
+        { key: "full-install", title: "Full SLA Install", note: "One-click installer: seeds all SLA content, syncs compendia, migrates legacy icon paths, and re-syncs artwork." },
         { key: "setup", title: "Setup Core Journals", note: "Creates/updates BPN journals plus the SLA general equipment catalogue." },
         { key: "rulebook", title: "Open Rulebook", note: "Opens the searchable SLA player/GM rulebook journal." },
         { key: "npc-guide", title: "Open NPC Guide", note: "Opens the searchable NPC/adversary chapter journal." },

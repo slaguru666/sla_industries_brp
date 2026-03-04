@@ -6,15 +6,17 @@ export class SLASeedImporter {
   static _skillNameCache = null;
   static _skillIconMapCache = null;
   static _weaponIconMapCache = null;
+  static _armourIconMapCache = null;
   static _ebbIconMapCache = null;
   static _speciesIconMapCache = null;
   static _trainingIconMapCache = null;
-  static SKILL_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Skills";
-  static WEAPON_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Weapons";
-  static EBB_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Ebb";
-  static SPECIES_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Species";
-  static TRAINING_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Ebb/Training";
-  static TRAIT_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Traits";
+  static SKILL_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Skills";
+  static WEAPON_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Weapons";
+  static ARMOUR_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Armor";
+  static EBB_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Ebb";
+  static SPECIES_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Species";
+  static TRAINING_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Ebb/Training";
+  static TRAIT_ICON_PATH = "systems/sla-industries-brp/assets/SLA_Assets/Traits";
   static AMMO_ICON_TAGS = new Set(["STD", "AP", "HE", "HEAP"]);
   static SLA2_TRAIT_ROWS = [
     { name: "Illness", rank: 3, traitType: "disadvantage", xpCost: -1 },
@@ -84,11 +86,23 @@ export class SLASeedImporter {
       throw new Error("FilePicker implementation not available");
     }
     const cleanPath = String(path ?? "").trim();
-    const attempts = [cleanPath];
-    const modulePrefix = "modules/sla-industries-compendium/assets/SLA_Assets/";
-    const legacyPrefix = "assets/SLA_Assets/";
-    if (cleanPath.startsWith(modulePrefix)) {
-      attempts.push(`${legacyPrefix}${cleanPath.slice(modulePrefix.length)}`);
+    const attempts = [];
+    const pushAttempt = (value = "") => {
+      const v = String(value ?? "").trim().replace(/^\/+/, "");
+      if (!v || attempts.includes(v)) return;
+      attempts.push(v);
+    };
+    pushAttempt(cleanPath);
+    const marker = "/SLA_Assets/";
+    const markerIndex = cleanPath.toLowerCase().indexOf(marker.toLowerCase());
+    if (markerIndex >= 0) {
+      const suffix = cleanPath.slice(markerIndex + 1);
+      pushAttempt(`systems/sla-industries-brp/${suffix}`);
+      pushAttempt(`modules/sla-industries-compendium/${suffix}`);
+      pushAttempt(suffix);
+    } else if (cleanPath.startsWith("assets/SLA_Assets/")) {
+      pushAttempt(`systems/sla-industries-brp/${cleanPath}`);
+      pushAttempt(`modules/sla-industries-compendium/${cleanPath}`);
     }
     let lastErr = null;
     for (const attempt of attempts) {
@@ -219,6 +233,89 @@ export class SLASeedImporter {
     };
     console.log("sla-industries-brp | Enforced SLA-only content", summary);
     ui.notifications.info("SLA-only content mode enforced.");
+    return summary;
+  }
+
+  static async runFullSLAInstaller({
+    overwrite = true,
+    pruneCompendia = true,
+    notify = true
+  } = {}) {
+    if (!game.user?.isGM) {
+      return { ok: false, reason: "not-gm" };
+    }
+
+    const seeded = await this.buildDraft2({ overwrite, syncCompendia: false });
+    const traits = await this.ensureSLA2Traits({ overwrite, notify: false });
+    const ammo = await this.seedAmmoGear({ overwrite });
+    const drugs = await this.seedDrugs({ overwrite });
+    const linked = await this.linkTrainingPackages({ overwrite: true });
+    const generalEquipment = await game.brp?.SLABPNToolkit?.seedWorldGeneralEquipment?.({
+      overwrite,
+      notify: false
+    });
+    const synced = await this.syncAllToCompendia({ overwrite: true, prune: pruneCompendia });
+
+    // Normalize old /assets/SLA_Assets paths before applying icon matching.
+    const migrated = await this.migrateLegacySLAAssetPaths({
+      includeActors: true,
+      includeCompendium: true,
+      notify: false
+    });
+
+    const icons = {
+      skills: await this.syncSkillIcons({ includeCompendium: true, notify: false }),
+      weapons: await this.syncWeaponIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      armour: await this.syncArmourIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      ebb: await this.syncEbbIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      species: await this.syncSpeciesIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      training: await this.syncTrainingPackageIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      ammo: await this.syncAmmoIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      drugs: await game.brp?.SLADrugSystem?.syncDrugIcons?.({
+        includeActors: true,
+        includeCompendium: true,
+        notify: false
+      }),
+      traits: await this.syncTraitIcons({ includeCompendium: true, includeActors: true, notify: false }),
+      gear: await game.brp?.SLABPNToolkit?.syncGeneralEquipmentIcons?.({
+        includeActors: true,
+        includeCompendium: true,
+        folderName: "SLA General Equipment",
+        notify: false
+      })
+    };
+
+    const audit = await this.auditSLAConnections();
+    const summary = {
+      ok: true,
+      seeded,
+      traits,
+      ammo,
+      drugs,
+      linked,
+      generalEquipment: generalEquipment ?? { skipped: true },
+      synced,
+      migrated,
+      icons,
+      audit
+    };
+
+    if (notify) {
+      const missing = Number(audit?.world?.missingSkills?.length ?? 0) +
+        Number(audit?.world?.missingSpecies?.length ?? 0) +
+        Number(audit?.world?.missingPackages?.length ?? 0) +
+        Number(audit?.world?.missingWeapons?.length ?? 0) +
+        Number(audit?.world?.missingArmour?.length ?? 0) +
+        Number(audit?.world?.missingEbbAbilities?.length ?? 0) +
+        Number(audit?.world?.missingDrugGear?.length ?? 0) +
+        Number(audit?.world?.missingAmmoGear?.length ?? 0);
+      if (missing > 0 || audit?.hasMissing) {
+        ui.notifications.warn(`SLA Full Install finished with ${missing} remaining gap(s). Check console audit output.`);
+      } else {
+        ui.notifications.info("SLA Full Install complete: content + compendia + icons synchronized.");
+      }
+    }
+    console.log("sla-industries-brp | SLA Full Install summary", summary);
     return summary;
   }
 
@@ -881,6 +978,10 @@ export class SLASeedImporter {
           }
         })
       };
+      const armourIcon = await this.getArmourIconPath(armour.name);
+      if (armourIcon) {
+        payload.img = armourIcon;
+      }
 
       const key = armour.name.toLowerCase().trim();
       const current = existingArmour.get(key);
@@ -889,6 +990,9 @@ export class SLASeedImporter {
         armourCreated++;
       } else if (overwrite) {
         await current.update(payload);
+        armourUpdated++;
+      } else if (armourIcon && current.img !== armourIcon) {
+        await current.update({ img: armourIcon });
         armourUpdated++;
       }
     }
@@ -1016,6 +1120,11 @@ export class SLASeedImporter {
         folderName: "SLA Armour",
         itemType: "armour",
         packId: "sla-industries-compendium.armour"
+      },
+      {
+        folderName: "SLA Traits",
+        itemType: "persTrait",
+        packId: "sla-industries-compendium.traits"
       }
     ];
 
@@ -1777,6 +1886,95 @@ export class SLASeedImporter {
     return null;
   }
 
+  static normalizeArmourIconKey(value) {
+    return String(value ?? "")
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "")
+      .trim();
+  }
+
+  static getArmourIconAliasCandidates(armourName = "") {
+    const key = this.normalizeArmourIconKey(armourName);
+    const aliases = {
+      bodyblockerpp644: ["PP644 Body Blocker"],
+      cafcompletearmourfabrication: ["CAF", "CAF Armour"],
+      chippycivilianarmour: ["Chippy", "Street Cloths"],
+      crackshotarmour: ["Crackshot"],
+      dnpowerarmour: ["Dark Night Power", "Dark Night Power Armour"],
+      dogeybonehardarmour: ["Dodgybone HARD Armour", "Dodgybone"],
+      ebbdeathsuitebonbrainwaster: ["Ebb Dethsuit", "Ebb Deathsuit"],
+      fullshiverarmour: ["Shiver", "SLA Patrol Armour"],
+      heavythreshersuit: ["Heavy Thresher"],
+      lightthreshersuit: ["Light Thresher"],
+      slacombatarmour: ["SLA Combat Armor"],
+      slacovertvest: ["SLA Covert Vest"],
+      slaheavyassaultarmour: ["SLA Heavy Assult"],
+      slareconmesh: ["SLA Recon Mesh"]
+    };
+    return aliases[key] ?? [];
+  }
+
+  static getArmourIconCandidates(armourName = "") {
+    const clean = String(armourName ?? "").trim();
+    if (!clean) return [];
+    const candidates = [
+      clean,
+      clean.replace(/[()]/g, " "),
+      clean.replace(/\(([^)]+)\)/g, " $1 "),
+      clean.replace(/[\/:]/g, " "),
+      clean.replace(/&/g, "and"),
+      clean.replace(/\s+/g, " ").trim()
+    ];
+    const noParens = clean.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+    if (noParens) candidates.push(noParens);
+    candidates.push(...this.getArmourIconAliasCandidates(clean));
+
+    const unique = [];
+    const seen = new Set();
+    for (const candidate of candidates) {
+      const norm = this.normalizeArmourIconKey(candidate);
+      if (!norm || seen.has(norm)) continue;
+      seen.add(norm);
+      unique.push(candidate);
+    }
+    return unique;
+  }
+
+  static async ensureArmourIconMap() {
+    if (this._armourIconMapCache) return this._armourIconMapCache;
+    const map = new Map();
+    const files = await this._browseDataFilesRecursive(this.ARMOUR_ICON_PATH);
+    for (const file of files) {
+      const base = String(file).split("/").pop()?.replace(/\.[^/.]+$/, "") ?? "";
+      const norm = this.normalizeArmourIconKey(base);
+      if (!norm || map.has(norm)) continue;
+      map.set(norm, file);
+    }
+    this._armourIconMapCache = map;
+    return map;
+  }
+
+  static async getArmourIconPath(armourName = "") {
+    const map = await this.ensureArmourIconMap();
+    if (!map.size) return null;
+
+    const candidates = this.getArmourIconCandidates(armourName);
+    for (const candidate of candidates) {
+      const norm = this.normalizeArmourIconKey(candidate);
+      if (map.has(norm)) return map.get(norm);
+    }
+
+    const needle = this.normalizeArmourIconKey(armourName);
+    if (!needle) return null;
+    for (const [key, path] of map.entries()) {
+      if (key.includes(needle) || needle.includes(key)) {
+        return path;
+      }
+    }
+    return null;
+  }
+
   static normalizeEbbIconKey(value) {
     return String(value ?? "")
       .toLowerCase()
@@ -2084,6 +2282,110 @@ export class SLASeedImporter {
     );
   }
 
+  static isSLAArmour(documentLike) {
+    if (!documentLike) return false;
+    const brpid = this.getDocumentBRPID(documentLike);
+    if (/^i\.armour\.sla-/.test(String(brpid ?? "").toLowerCase())) return true;
+    return Boolean(
+      documentLike.flags?.[game.system.id]?.slaArmour ||
+      documentLike.flags?.[game.system.id]?.slaEquipment?.role === "armour" ||
+      documentLike.flags?.brp?.slaArmour
+    );
+  }
+
+  static isSLATrait(documentLike) {
+    if (!documentLike) return false;
+    const brpid = this.getDocumentBRPID(documentLike);
+    if (/^i\.perstrait\.sla2-/.test(String(brpid ?? "").toLowerCase())) return true;
+    return Boolean(
+      documentLike.flags?.[game.system.id]?.slaTrait ||
+      documentLike.flags?.brp?.slaTrait
+    );
+  }
+
+  static _toBundledAssetPath(path = "") {
+    const raw = decodeURIComponent(String(path ?? "").trim());
+    if (!raw) return "";
+    const normalized = raw.replace(/^\/+/, "");
+    const marker = "/SLA_Assets/";
+    const idx = normalized.toLowerCase().indexOf(marker.toLowerCase());
+    if (idx < 0) return "";
+    const suffix = normalized.slice(idx + 1);
+    return `systems/sla-industries-brp/${suffix}`;
+  }
+
+  static async migrateLegacySLAAssetPaths({
+    includeActors = true,
+    includeCompendium = true,
+    notify = false
+  } = {}) {
+    if (!game.user?.isGM) {
+      return { worldUpdated: 0, actorUpdated: 0, compendiumUpdated: 0, packs: [] };
+    }
+
+    let worldUpdated = 0;
+    const worldUpdates = [];
+    for (const item of game.items ?? []) {
+      const nextPath = this._toBundledAssetPath(item.img);
+      if (!nextPath || nextPath === item.img) continue;
+      worldUpdates.push({ _id: item.id, img: nextPath });
+    }
+    if (worldUpdates.length) {
+      await Item.updateDocuments(worldUpdates);
+      worldUpdated = worldUpdates.length;
+    }
+
+    let actorUpdated = 0;
+    if (includeActors) {
+      for (const actor of game.actors ?? []) {
+        const updates = [];
+        for (const item of actor.items ?? []) {
+          const nextPath = this._toBundledAssetPath(item.img);
+          if (!nextPath || nextPath === item.img) continue;
+          updates.push({ _id: item.id, img: nextPath });
+        }
+        if (updates.length) {
+          await actor.updateEmbeddedDocuments("Item", updates);
+          actorUpdated += updates.length;
+        }
+      }
+    }
+
+    let compendiumUpdated = 0;
+    const packs = [];
+    if (includeCompendium) {
+      const targetPacks = game.packs.filter((pack) => pack.documentName === "Item");
+      for (const pack of targetPacks) {
+        let packUpdated = 0;
+        try {
+          await this.ensurePackWritable(pack);
+          const docs = await pack.getDocuments();
+          const updates = [];
+          for (const doc of docs) {
+            const nextPath = this._toBundledAssetPath(doc.img);
+            if (!nextPath || nextPath === doc.img) continue;
+            updates.push({ _id: doc.id, img: nextPath });
+          }
+          if (updates.length) {
+            await Item.updateDocuments(updates, { pack: pack.collection });
+            packUpdated = updates.length;
+            compendiumUpdated += updates.length;
+          }
+        } catch (err) {
+          console.warn(`sla-industries-brp | Failed legacy SLA asset path migration for pack ${pack.collection}`, err);
+        }
+        if (packUpdated > 0) packs.push({ pack: pack.collection, updated: packUpdated });
+      }
+    }
+
+    if (notify && (worldUpdated || actorUpdated || compendiumUpdated)) {
+      ui.notifications.info(
+        `SLA legacy icon paths migrated: world ${worldUpdated}, actors ${actorUpdated}, compendium ${compendiumUpdated}.`
+      );
+    }
+    return { worldUpdated, actorUpdated, compendiumUpdated, packs };
+  }
+
   static async syncSkillIcons({ includeCompendium = true, notify = false } = {}) {
     if (!game.user?.isGM) {
       return { worldUpdated: 0, compendiumUpdated: 0, packs: [] };
@@ -2239,6 +2541,192 @@ export class SLASeedImporter {
     if (notify && summary.unmatched.length > 0) {
       ui.notifications.warn(`SLA weapon icon sync: ${summary.unmatched.length} weapon(s) still unmatched. See console.`);
       console.warn("sla-industries-brp | Unmatched SLA weapon icons", summary.unmatched);
+    }
+    return summary;
+  }
+
+  static async syncArmourIcons({ includeCompendium = true, includeActors = true, notify = false } = {}) {
+    if (!game.user?.isGM) {
+      return { worldUpdated: 0, actorUpdated: 0, compendiumUpdated: 0, packs: [], unmatched: [] };
+    }
+
+    let worldUpdated = 0;
+    const worldUpdates = [];
+    const unmatched = new Set();
+    for (const item of game.items.filter((i) => i.type === "armour")) {
+      if (!this.isSLAArmour(item)) continue;
+      const iconName = String(item.name ?? "").trim();
+      if (!iconName) continue;
+      const iconPath = await this.getArmourIconPath(iconName);
+      if (!iconPath) {
+        unmatched.add(iconName);
+        continue;
+      }
+      if (item.img === iconPath) continue;
+      worldUpdates.push({ _id: item.id, img: iconPath });
+    }
+    if (worldUpdates.length) {
+      await Item.updateDocuments(worldUpdates);
+      worldUpdated = worldUpdates.length;
+    }
+
+    let actorUpdated = 0;
+    if (includeActors) {
+      for (const actor of game.actors ?? []) {
+        const updates = [];
+        for (const item of actor.items.filter((i) => i.type === "armour")) {
+          if (!this.isSLAArmour(item)) continue;
+          const iconName = String(item.name ?? "").trim();
+          if (!iconName) continue;
+          const iconPath = await this.getArmourIconPath(iconName);
+          if (!iconPath) {
+            unmatched.add(iconName);
+            continue;
+          }
+          if (item.img === iconPath) continue;
+          updates.push({ _id: item.id, img: iconPath });
+        }
+        if (updates.length) {
+          await actor.updateEmbeddedDocuments("Item", updates);
+          actorUpdated += updates.length;
+        }
+      }
+    }
+
+    let compendiumUpdated = 0;
+    const packs = [];
+    if (includeCompendium) {
+      const targetPacks = game.packs.filter((pack) => {
+        if (pack.documentName !== "Item") return false;
+        const id = String(pack.collection ?? "").toLowerCase();
+        return id === "sla-industries-compendium.armour" || id.endsWith(".armour");
+      });
+
+      for (const pack of targetPacks) {
+        let packUpdated = 0;
+        try {
+          await this.ensurePackWritable(pack);
+          const docs = await pack.getDocuments();
+          const updates = [];
+          for (const doc of docs) {
+            if (doc.type !== "armour" || !this.isSLAArmour(doc)) continue;
+            const iconName = String(doc.name ?? "").trim();
+            if (!iconName) continue;
+            const iconPath = await this.getArmourIconPath(iconName);
+            if (!iconPath) {
+              unmatched.add(iconName);
+              continue;
+            }
+            if (doc.img === iconPath) continue;
+            updates.push({ _id: doc.id, img: iconPath });
+          }
+          if (updates.length) {
+            await Item.updateDocuments(updates, { pack: pack.collection });
+            packUpdated = updates.length;
+            compendiumUpdated += updates.length;
+          }
+        } catch (err) {
+          console.warn(`sla-industries-brp | Failed armour icon sync for pack ${pack.collection}`, err);
+        }
+        packs.push({ pack: pack.collection, updated: packUpdated });
+      }
+    }
+
+    const summary = { worldUpdated, actorUpdated, compendiumUpdated, packs, unmatched: [...unmatched].sort() };
+    if (notify && (worldUpdated > 0 || actorUpdated > 0 || compendiumUpdated > 0)) {
+      ui.notifications.info(
+        `SLA armour icons synced: world ${worldUpdated}, actors ${actorUpdated}, compendium ${compendiumUpdated}.`
+      );
+    }
+    if (notify && summary.unmatched.length > 0) {
+      ui.notifications.warn(`SLA armour icon sync: ${summary.unmatched.length} armour item(s) still unmatched. See console.`);
+      console.warn("sla-industries-brp | Unmatched SLA armour icons", summary.unmatched);
+    }
+    return summary;
+  }
+
+  static async syncTraitIcons({ includeCompendium = true, includeActors = true, notify = false } = {}) {
+    if (!game.user?.isGM) {
+      return { worldUpdated: 0, actorUpdated: 0, compendiumUpdated: 0, packs: [], unmatched: [] };
+    }
+
+    let worldUpdated = 0;
+    const worldUpdates = [];
+    const unmatched = new Set();
+    for (const item of game.items.filter((i) => i.type === "persTrait")) {
+      if (!this.isSLATrait(item)) continue;
+      const iconName = String(item.name ?? "").trim();
+      if (!iconName) continue;
+      const iconPath = this.getTraitIconPath(iconName);
+      if (!iconPath) {
+        unmatched.add(iconName);
+        continue;
+      }
+      if (item.img === iconPath) continue;
+      worldUpdates.push({ _id: item.id, img: iconPath });
+    }
+    if (worldUpdates.length) {
+      await Item.updateDocuments(worldUpdates);
+      worldUpdated = worldUpdates.length;
+    }
+
+    let actorUpdated = 0;
+    if (includeActors) {
+      for (const actor of game.actors ?? []) {
+        const updates = [];
+        for (const item of actor.items.filter((i) => i.type === "persTrait")) {
+          if (!this.isSLATrait(item)) continue;
+          const iconPath = this.getTraitIconPath(item.name);
+          if (!iconPath) continue;
+          if (item.img === iconPath) continue;
+          updates.push({ _id: item.id, img: iconPath });
+        }
+        if (updates.length) {
+          await actor.updateEmbeddedDocuments("Item", updates);
+          actorUpdated += updates.length;
+        }
+      }
+    }
+
+    let compendiumUpdated = 0;
+    const packs = [];
+    if (includeCompendium) {
+      const targetPacks = game.packs.filter((pack) => {
+        if (pack.documentName !== "Item") return false;
+        const id = String(pack.collection ?? "").toLowerCase();
+        return id === "sla-industries-compendium.traits" || id.endsWith(".traits");
+      });
+
+      for (const pack of targetPacks) {
+        let packUpdated = 0;
+        try {
+          await this.ensurePackWritable(pack);
+          const docs = await pack.getDocuments();
+          const updates = [];
+          for (const doc of docs) {
+            if (doc.type !== "persTrait" || !this.isSLATrait(doc)) continue;
+            const iconPath = this.getTraitIconPath(doc.name);
+            if (!iconPath) continue;
+            if (doc.img === iconPath) continue;
+            updates.push({ _id: doc.id, img: iconPath });
+          }
+          if (updates.length) {
+            await Item.updateDocuments(updates, { pack: pack.collection });
+            packUpdated = updates.length;
+            compendiumUpdated += updates.length;
+          }
+        } catch (err) {
+          console.warn(`sla-industries-brp | Failed trait icon sync for pack ${pack.collection}`, err);
+        }
+        packs.push({ pack: pack.collection, updated: packUpdated });
+      }
+    }
+
+    const summary = { worldUpdated, actorUpdated, compendiumUpdated, packs, unmatched: [...unmatched].sort() };
+    if (notify && (worldUpdated > 0 || actorUpdated > 0 || compendiumUpdated > 0)) {
+      ui.notifications.info(
+        `SLA trait icons synced: world ${worldUpdated}, actors ${actorUpdated}, compendium ${compendiumUpdated}.`
+      );
     }
     return summary;
   }
