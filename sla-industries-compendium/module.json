@@ -293,8 +293,8 @@
     ]
   },
   "description": "Draft SLA Industries compendium module targeting the SLA Industries BRP system for Foundry VTT.",
-  "url": "",
-  "manifest": "",
-  "download": "",
+  "url": "https://github.com/slaguru666/sla_industries_brp/tree/main/sla-industries-compendium",
+  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-compendium/module.json",
+  "download": "https://github.com/slaguru666/sla_industries_brp/archive/refs/heads/main.zip",
   "license": "LICENSE.txt"
 }

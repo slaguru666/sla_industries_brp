@@ -83,8 +83,9 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "socket": true,
-  "manifest": "",
-  "download": "",
+  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-brp/system.json",
+  "download": "https://github.com/slaguru666/sla_industries_brp/archive/refs/heads/main.zip",
   "license": "LICENSE.txt",
-  "changelog": "CHANGELOG.md"
+  "changelog": "CHANGELOG.md",
+  "url": "https://github.com/slaguru666/sla_industries_brp/tree/main/sla-industries-brp"
 }
