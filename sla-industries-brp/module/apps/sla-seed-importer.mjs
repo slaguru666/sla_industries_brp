@@ -3,20 +3,18 @@ import { SLAAmmoCatalog } from "./sla-ammo-catalog.mjs";
 import { SLADrugSystem } from "./sla-drug-system.mjs";
 
 export class SLASeedImporter {
-  static COMPANION_MODULE_ID = "sla-industries-compendium";
   static _skillNameCache = null;
   static _skillIconMapCache = null;
   static _weaponIconMapCache = null;
   static _ebbIconMapCache = null;
   static _speciesIconMapCache = null;
   static _trainingIconMapCache = null;
-  static ICON_BASE_PATH = `modules/${this.COMPANION_MODULE_ID}/assets/SLA_Assets`;
-  static SKILL_ICON_PATH = `${this.ICON_BASE_PATH}/Skills`;
-  static WEAPON_ICON_PATH = `${this.ICON_BASE_PATH}/Weapons`;
-  static EBB_ICON_PATH = `${this.ICON_BASE_PATH}/Ebb`;
-  static SPECIES_ICON_PATH = `${this.ICON_BASE_PATH}/Species`;
-  static TRAINING_ICON_PATH = `${this.ICON_BASE_PATH}/Ebb/Training`;
-  static TRAIT_ICON_PATH = `${this.ICON_BASE_PATH}/Traits`;
+  static SKILL_ICON_PATH = "assets/SLA_Assets/Skills";
+  static WEAPON_ICON_PATH = "assets/SLA_Assets/Weapons";
+  static EBB_ICON_PATH = "assets/SLA_Assets/Ebb";
+  static SPECIES_ICON_PATH = "assets/SLA_Assets/Species";
+  static TRAINING_ICON_PATH = "assets/SLA_Assets/Ebb/Training";
+  static TRAIT_ICON_PATH = "assets/SLA_Assets/Traits";
   static AMMO_ICON_TAGS = new Set(["STD", "AP", "HE", "HEAP"]);
   static SLA2_TRAIT_ROWS = [
     { name: "Illness", rank: 3, traitType: "disadvantage", xpCost: -1 },
@@ -1321,13 +1319,7 @@ export class SLASeedImporter {
   }
 
   static async loadSeed(fileName) {
-    const moduleId = this.COMPANION_MODULE_ID;
-    const module = game.modules?.get(moduleId);
-    if (!module) {
-      throw new Error(`Required companion module is not installed: ${moduleId}`);
-    }
-
-    const url = `modules/${moduleId}/sla-data/${fileName}`;
+    const url = `modules/sla-industries-compendium/sla-data/${fileName}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Unable to load seed file: ${url}`);

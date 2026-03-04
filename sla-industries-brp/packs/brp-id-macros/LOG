@@ -1,3 +1,8 @@
 2026/02/27-16:50:13.144277 30c8ec000 Recovering log #647
 2026/02/27-16:50:13.145032 30c8ec000 Delete type=3 #646
 2026/02/27-16:50:13.145119 30c8ec000 Delete type=0 #647
+2026/03/02-22:47:58.708615 305ec5000 Level-0 table #651: started
+2026/03/02-22:47:58.708769 305ec5000 Level-0 table #651: 0 bytes OK
+2026/03/02-22:47:58.709095 305ec5000 Delete type=0 #649
+2026/03/02-22:47:58.709983 305ec5000 Manual compaction at level-0 from '!macros!6E85pCF6wEujGsfn' @ 72057594037927935 : 1 .. '!macros!tJUXtpnbZgSI66yU' @ 0 : 0; will stop at (end)
+2026/03/02-22:47:58.710003 305ec5000 Manual compaction at level-1 from '!macros!6E85pCF6wEujGsfn' @ 72057594037927935 : 1 .. '!macros!tJUXtpnbZgSI66yU' @ 0 : 0; will stop at (end)

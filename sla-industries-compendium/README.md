@@ -1,38 +1,11 @@
 # sla-industries-compendium
 
-Companion module for `sla-industries-brp` with:
+Draft compendium module for SLA Industries on Foundry VTT.
 
-- SLA seed JSON content (`sla-data/*.json`)
-- SLA compendium packs
-- SLA artwork (`assets/SLA_Assets`)
-
-## Install
-
+## Notes
 - Module ID: `sla-industries-compendium`
 - Target system: `sla-industries-brp`
-- Manifest:
-  `https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-compendium/module.json`
-
-## Import Content Into A New World
-
-After installing the system and module:
-
-1. Open the **Compendium** tab.
-2. Click the new import button in the Compendium header, or right-click any `sla-industries-compendium` pack.
-3. Choose **Import SLA Companion Content**.
-4. Pick **Merge** or **Overwrite**.
-
-No script macro is required.
-
-Optional fallback (GM macro):
-
-```js
-const { SLASeedImporter } = await import("/systems/sla-industries-brp/module/apps/sla-seed-importer.mjs");
-await SLASeedImporter.buildDraft2({ overwrite: false, syncCompendia: true });
-```
-
-This seeds skills, species, training packages, ebb abilities, equipment, drugs, and related links using module data/artwork paths.
+- This is currently a direct clone baseline of the BRP UGE compendia metadata, prepared for SLA-specific pack updates.
 
 ## ORC Notice
-
 BRP source material remains subject to Chaosium's ORC licensing terms where applicable.

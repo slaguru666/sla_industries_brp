@@ -2,11 +2,10 @@
   "id": "sla-industries-brp",
   "title": "SLA Industries BRP (Draft)",
   "description": "Draft SLA Industries conversion of the BRP system for FoundryVTT.",
-  "version": "13.1.54",
-  "coreVersion": "13.351",
+  "version": "13.1.52",
   "compatibility": {
     "minimum": "13",
-    "verified": "13.351",
+    "verified": "13.350",
     "maximum": "13"
   },
   "authors": [
@@ -84,9 +83,8 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "socket": true,
-  "manifest": "https://raw.githubusercontent.com/slaguru666/sla_industries_brp/main/sla-industries-brp/system.json",
-  "download": "https://github.com/slaguru666/sla_industries_brp/releases/latest/download/sla-industries-brp.zip",
-  "url": "https://github.com/slaguru666/sla_industries_brp",
+  "manifest": "",
+  "download": "",
   "license": "LICENSE.txt",
   "changelog": "CHANGELOG.md"
 }
