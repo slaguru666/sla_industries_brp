@@ -6,7 +6,22 @@ export class SLABPNToolkit {
     if (!pickerImpl?.browse) {
       throw new Error("FilePicker implementation not available");
     }
-    return pickerImpl.browse("data", path);
+    const cleanPath = String(path ?? "").trim();
+    const attempts = [cleanPath];
+    const modulePrefix = "modules/sla-industries-compendium/assets/SLA_Assets/";
+    const legacyPrefix = "assets/SLA_Assets/";
+    if (cleanPath.startsWith(modulePrefix)) {
+      attempts.push(`${legacyPrefix}${cleanPath.slice(modulePrefix.length)}`);
+    }
+    let lastErr = null;
+    for (const attempt of attempts) {
+      try {
+        return await pickerImpl.browse("data", attempt);
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    throw lastErr ?? new Error(`Failed browsing data path: ${cleanPath}`);
   }
 
   static MAIN_COLOURS = [
@@ -534,7 +549,7 @@ export class SLABPNToolkit {
   static EXTENDED_DATA_JOURNAL_NAME = "BPN RANDOM DATA – EXTENDED";
   static COMPLETE_JOURNAL_NAME = "BPN TOOLKIT – COMPLETE";
   static EQUIPMENT_JOURNAL_NAME = "SLA GENERAL EQUIPMENT CATALOGUE";
-  static GEAR_ICON_PATH = "assets/SLA_Assets/Gear";
+  static GEAR_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Gear";
   static _GEAR_ICON_MAP = null;
   static RULEBOOK_JOURNAL_NAME = "SLA RULEBOOK – PLAYERS & GMS";
   static RULEBOOK_SOURCE_PATH = "systems/sla-industries-brp/SLA_RULEBOOK_FOUNDATION.md";

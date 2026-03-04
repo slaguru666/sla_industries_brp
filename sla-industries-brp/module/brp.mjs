@@ -204,6 +204,45 @@ Hooks.once("ready", async function () {
       console.warn("sla-industries-brp | Failed SLA Traits seed on ready", err);
     }
   }
+  // Ensure core SLA world content folders/items exist (important for fresh remote worlds).
+  if (game.user?.isGM && game.brp?.SLASeedImporter) {
+    try {
+      const hasItemFolder = (name) => game.folders.some((f) => f.type === "Item" && f.name === name && !f.folder);
+      const itemFolderItemCount = (name) => {
+        const folder = game.folders.find((f) => f.type === "Item" && f.name === name && !f.folder);
+        if (!folder) return 0;
+        return game.items.filter((item) => item.folder?.id === folder.id).length;
+      };
+      const shouldSeed = (name) => !hasItemFolder(name) || itemFolderItemCount(name) === 0;
+
+      if (shouldSeed("SLA Ebb Abilities") && game.brp.SLASeedImporter.importEbbAbilities) {
+        await game.brp.SLASeedImporter.importEbbAbilities({ overwrite: false });
+      }
+      if (
+        (shouldSeed("SLA Weapons") || shouldSeed("SLA Armour")) &&
+        game.brp.SLASeedImporter.importEquipment
+      ) {
+        await game.brp.SLASeedImporter.importEquipment({ overwrite: false });
+      }
+      if (shouldSeed("SLA Species") && game.brp.SLASeedImporter.importSpecies) {
+        await game.brp.SLASeedImporter.importSpecies({ overwrite: false });
+      }
+      if (shouldSeed("SLA Training Packages") && game.brp.SLASeedImporter.importTrainingPackages) {
+        await game.brp.SLASeedImporter.importTrainingPackages({ overwrite: false });
+      }
+      if (shouldSeed("SLA Ammo") && game.brp.SLASeedImporter.seedAmmoGear) {
+        await game.brp.SLASeedImporter.seedAmmoGear({ overwrite: false });
+      }
+      if (shouldSeed("SLA Drugs") && game.brp.SLASeedImporter.seedDrugs) {
+        await game.brp.SLASeedImporter.seedDrugs({ overwrite: false });
+      }
+      if (shouldSeed("SLA General Equipment") && game.brp.SLABPNToolkit?.seedWorldGeneralEquipment) {
+        await game.brp.SLABPNToolkit.seedWorldGeneralEquipment({ overwrite: false, notify: false });
+      }
+    } catch (err) {
+      console.warn("sla-industries-brp | Failed SLA world content completeness pass", err);
+    }
+  }
   if (game.brp?.SLASeedImporter && !game.brp.SLASeedImporter.seedDrugs) {
     try {
       const { SLADrugSystem } = await import("./apps/sla-drug-system.mjs");

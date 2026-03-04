@@ -9,12 +9,12 @@ export class SLASeedImporter {
   static _ebbIconMapCache = null;
   static _speciesIconMapCache = null;
   static _trainingIconMapCache = null;
-  static SKILL_ICON_PATH = "assets/SLA_Assets/Skills";
-  static WEAPON_ICON_PATH = "assets/SLA_Assets/Weapons";
-  static EBB_ICON_PATH = "assets/SLA_Assets/Ebb";
-  static SPECIES_ICON_PATH = "assets/SLA_Assets/Species";
-  static TRAINING_ICON_PATH = "assets/SLA_Assets/Ebb/Training";
-  static TRAIT_ICON_PATH = "assets/SLA_Assets/Traits";
+  static SKILL_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Skills";
+  static WEAPON_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Weapons";
+  static EBB_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Ebb";
+  static SPECIES_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Species";
+  static TRAINING_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Ebb/Training";
+  static TRAIT_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Traits";
   static AMMO_ICON_TAGS = new Set(["STD", "AP", "HE", "HEAP"]);
   static SLA2_TRAIT_ROWS = [
     { name: "Illness", rank: 3, traitType: "disadvantage", xpCost: -1 },
@@ -83,7 +83,22 @@ export class SLASeedImporter {
     if (!pickerImpl?.browse) {
       throw new Error("FilePicker implementation not available");
     }
-    return pickerImpl.browse("data", path);
+    const cleanPath = String(path ?? "").trim();
+    const attempts = [cleanPath];
+    const modulePrefix = "modules/sla-industries-compendium/assets/SLA_Assets/";
+    const legacyPrefix = "assets/SLA_Assets/";
+    if (cleanPath.startsWith(modulePrefix)) {
+      attempts.push(`${legacyPrefix}${cleanPath.slice(modulePrefix.length)}`);
+    }
+    let lastErr = null;
+    for (const attempt of attempts) {
+      try {
+        return await pickerImpl.browse("data", attempt);
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    throw lastErr ?? new Error(`Failed browsing data path: ${cleanPath}`);
   }
 
   static isSLABrpid(brpid = "") {

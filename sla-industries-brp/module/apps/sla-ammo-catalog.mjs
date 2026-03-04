@@ -1,5 +1,5 @@
 export class SLAAmmoCatalog {
-  static AMMO_ICON_PATH = "assets/SLA_Assets/Ammo";
+  static AMMO_ICON_PATH = "modules/sla-industries-compendium/assets/SLA_Assets/Ammo";
 
   static BASE_CALIBRES = [
     { key: "3mm", label: "3mm", cost: 1, group: "Handgun", typical: "FEN 603, machine pistols" },
