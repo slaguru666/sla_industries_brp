@@ -203,6 +203,9 @@ export class BRPID {
     if (!brpidRegExp) {
       return []
     }
+    if (!type || !BRPID.gamePropertyLookup?.[String(type)]) {
+      return []
+    }
     const result = []
 
     let count = 0
@@ -310,7 +313,13 @@ export class BRPID {
     if (!brpid || typeof brpid !== 'string') {
       return []
     }
+    if (!brpid.includes('.')) {
+      return []
+    }
     const type = brpid.split('.')[0]
+    if (!type || !BRPID.gamePropertyLookup?.[String(type)]) {
+      return []
+    }
     const brpidRegExp = new RegExp('^' + BRPUtilities.quoteRegExp(brpid) + '$')
     return BRPID.fromBRPIDRegexBest({ brpidRegExp, type, lang, langFallback, showLoading })
   }
@@ -413,7 +422,15 @@ export class BRPID {
       SceneNavigation.displayProgressBar({ label: game.i18n.localize('SETUP.PackagesLoading'), pct: Math.floor(100 / progressBar) })
     }
 
-    const gameProperty = BRPID.getGameProperty(`${type}..`)
+    let gameProperty = null
+    try {
+      gameProperty = BRPID.getGameProperty(`${type}..`)
+    } catch (err) {
+      return []
+    }
+    if (!gameProperty || !game?.[gameProperty]) {
+      return []
+    }
 
     const candidateDocuments = game[gameProperty]?.filter((d) => {
       const brpidFlag = BRPID.getBRPIDFlag(d)
@@ -508,7 +525,7 @@ export class BRPID {
     if (!gameProperty) {
       ui.notifications.warn(game.i18n.format('BRP.BRPIDFlag.error.incorrect.type'))
       console.log('brp | ', brpid)
-      throw new Error()
+      return null
     }
     return gameProperty
   }
@@ -536,7 +553,7 @@ export class BRPID {
     if (!documentType) {
       ui.notifications.warn(game.i18n.format('BRP.BRPIDFlag.error.incorrect.type'))
       console.log('brp | ', brpid)
-      throw new Error()
+      return null
     }
     return documentType
   }
